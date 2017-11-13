@@ -74,6 +74,7 @@ class Popover extends React.Component {
           </Target>
           {this.state.isOpen ? (
             <PopoverComponent
+              key={Math.random(1)}
               className={className}
               onClose={onClose}
               onOpen={onOpen}
