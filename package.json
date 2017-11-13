@@ -9,7 +9,10 @@
     "dev": "rollup -c -w",
     "build": "rollup -c"
   },
-  "files":["dest/react-awesome-popover.js","dest/react-awesome-popover.css"],
+  "files": [
+    "dest/react-awesome-popover.js",
+    "dest/react-awesome-popover.css"
+  ],
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-plugin-external-helpers": "^6.22.0",
@@ -26,13 +29,16 @@
     "rollup-plugin-commonjs": "^8.2.6",
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-plugin-replace": "^2.0.0",
-    "rollup-plugin-uglify": "^2.0.1",
     "rollup-watch": "^4.3.1"
   },
   "dependencies": {
     "random-id": "^0.0.2",
     "react": "^16.1.0",
     "react-dom": "^16.1.0",
+    "react-popper": "^0.7.4"
+  },
+  "peerDependencies": {
+    "react": "^16.1.0",
     "react-popper": "^0.7.4"
   }
 }
