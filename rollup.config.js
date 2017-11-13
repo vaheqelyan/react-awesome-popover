@@ -3,7 +3,6 @@ import nodeResolve from "rollup-plugin-node-resolve";
 import commonjs from "rollup-plugin-commonjs";
 import alias from "rollup-plugin-alias";
 import replace from "rollup-plugin-replace";
-import uglify from 'rollup-plugin-uglify';
 
 export default {
   input: "src/index.js",
@@ -28,8 +27,7 @@ export default {
       react: "node_modules/react/umd/react.development.js",
       "react-dom":
         "node_modules/react-dom/umd/reac-dom.react-dom.development.js"
-    }),
-    uglify()
+    })
   ],
   external:['react','react-dom'],
   globals:{
