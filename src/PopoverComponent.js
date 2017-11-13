@@ -33,7 +33,7 @@ export default class PopoverComponent extends React.Component {
   }
 
   componentWillUnmount() {
-    const { action,onClose } = this.props;
+    const { action, onClose } = this.props;
     if (action === "click") {
       document.removeEventListener("click", this.click, false);
     } else if (action === "hover") {
@@ -45,7 +45,7 @@ export default class PopoverComponent extends React.Component {
       );
     }
 
-    if(onClose) onClose()
+    if (onClose) onClose();
   }
 
   onMouseOver(e) {
@@ -64,30 +64,25 @@ export default class PopoverComponent extends React.Component {
   }
 
   componentDidMount() {
-
-    const { action,onOpen } = this.props;
+    const { action, onOpen } = this.props;
     if (action === "click") {
       document.addEventListener("click", this.click, false);
     } else if (action === "hover") {
       document.addEventListener("mouseover", this.onMouseOver, false);
     }
 
-    if(onOpen) onOpen()
+    if (onOpen) onOpen();
   }
 
   render() {
-    const { placement, arrow,className } = this.props;
+    const { placement, arrow, className } = this.props;
 
     return (
       <Popper placement={placement} ref="popover">
         {({ popperProps }) => {
-          if(this.props.arrow){
-            popperProps.className = `popover-content rap-${
-            popperProps["data-placement"]
-          } ${className}`;
-        } else {
-          popperProps.className = `popover-content ${className}`;
-        }
+          popperProps.className = arrow
+            ? `popover-content rap-${popperProps["data-placement"]}`
+            : `popover-content ${className ? className : ""}`;
 
           return (
             <div {...popperProps} data-id={this.props.id}>
