@@ -24,7 +24,7 @@ const ArrowComponent = ({ dataPlacement, customArrow }) => {
         ) : (
           <span {...arrowProps}>
             <svg
-              xmlnsxlink="http://www.w3.org/1999/xlink"
+              xmlnsXlink="http://www.w3.org/1999/xlink"
               viewBox="0 0 100 100"
               version="1.1"
               x="0px"
@@ -49,7 +49,7 @@ const ArrowComponent = ({ dataPlacement, customArrow }) => {
                 filter="url(#a)"
                 points="36 23 64 55 36 80"
                 fill="#fff"
-                fillrule="evenodd"
+                fillRule="evenodd"
               />
             </svg>
           </span>
