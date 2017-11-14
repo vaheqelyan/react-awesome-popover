@@ -75,7 +75,15 @@ export default class PopoverComponent extends React.Component {
   }
 
   render() {
-    const { placement, arrow, className } = this.props;
+    const {
+      placement,
+      arrow,
+      className,
+      motion,
+      id,
+      customArrow,
+      children
+    } = this.props;
 
     return (
       <Popper placement={placement} ref="popover">
@@ -84,18 +92,29 @@ export default class PopoverComponent extends React.Component {
             ? `popover-content rap-${popperProps["data-placement"]}`
             : `popover-content ${className ? className : ""}`;
 
-          return (
-            <div {...popperProps} data-id={this.props.id}>
-              {this.props.children}
-
-              {arrow ? (
-                <ArrowComponent
-                  customArrow={this.props.customArrow}
-                  dataPlacement={popperProps["data-placement"]}
-                />
-              ) : null}
-            </div>
-          );
+          if (motion) {
+            var ArrowCallback = arrow ? (
+              <ArrowComponent
+                customArrow={customArrow}
+                dataPlacement={popperProps["data-placement"]}
+              />
+            ) : null;
+            return children[1]({ "data-id": id }, popperProps, ArrowCallback);
+          } else {
+            return (
+              <div {...popperProps} data-id={id}>
+                <div>
+                  {children[1]}
+                  {arrow ? (
+                    <ArrowComponent
+                      customArrow={customArrow}
+                      dataPlacement={popperProps["data-placement"]}
+                    />
+                  ) : null}
+                </div>
+              </div>
+            );
+          }
         }}
       </Popper>
     );
