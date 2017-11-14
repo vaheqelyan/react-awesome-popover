@@ -25,7 +25,6 @@ class Popover extends React.Component {
       onClick,
       placement,
       render,
-      target,
       action,
       motion,
       children
