@@ -101,7 +101,8 @@ Popover.defaultProps = {
   arrow: true,
   placement: "auto",
   action: "click",
-  motion: false
+  motion: false,
+  className: undefined
 };
 
 export default Popover;
