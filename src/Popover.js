@@ -26,11 +26,13 @@ class Popover extends React.Component {
       placement,
       render,
       target,
-      action
+      action,
+      motion,
+      children
     } = this.props;
 
     if (action === "click") {
-      target.props.onClick = e => {
+      children[0].props.onClick = e => {
         var close = e.target.closest(".popover-content");
         if (close) {
           var getpopover = close.querySelector(".popover-content");
@@ -42,10 +44,10 @@ class Popover extends React.Component {
         }
       };
     } else if (action === "hover") {
-      target.props.onMouseEnter = e => {
+      children[0].props.onMouseEnter = e => {
         this.setState({ isOpen: true });
       };
-      target.props.onMouseLeave = e => {
+      children[0].props.onMouseLeave = e => {
         const getElement = e.relatedTarget;
         if (getElement && getElement.nodeName) {
           const close = getElement.closest(".manager");
@@ -63,29 +65,34 @@ class Popover extends React.Component {
     }
 
     return (
-      
-        <Manager className="manager" style={{'display':"inline"}} data-target-id={this.state.id}>
-          <Target>
-            {({ targetProps }) => (
-              <div className="target-container" {...targetProps}>
-                {target}
-              </div>
-            )}
-          </Target>
-          {this.state.isOpen ? (
-            <PopoverComponent
-              key={Math.random(1)}
-              className={className}
-              onClose={onClose}
-              onOpen={onOpen}
-              customArrow={customArrow}
-              onClosePopover={this.closePopover}
-              placement={placement}
-              {...this.props}
-              id={this.state.id}
-            />
-          ) : null}
-        </Manager>
+      <Manager
+        className="manager"
+        style={{ display: "inline" }}
+        data-target-id={this.state.id}
+      >
+        <Target>
+          {({ targetProps }) => (
+            <div className="target-container" {...targetProps}>
+              {this.props.children[0]}
+            </div>
+          )}
+        </Target>
+
+        {this.state.isOpen ? (
+          <PopoverComponent
+            key={Math.random(1)}
+            motion={motion}
+            className={className}
+            onClose={onClose}
+            onOpen={onOpen}
+            customArrow={customArrow}
+            onClosePopover={this.closePopover}
+            placement={placement}
+            {...this.props}
+            id={this.state.id}
+          />
+        ) : null}
+      </Manager>
     );
   }
 }
@@ -93,7 +100,8 @@ class Popover extends React.Component {
 Popover.defaultProps = {
   arrow: true,
   placement: "auto",
-  action: "click"
+  action: "click",
+  motion: false
 };
 
 export default Popover;
