@@ -88,9 +88,15 @@ export default class PopoverComponent extends React.Component {
     return (
       <Popper placement={placement} ref="popover">
         {({ popperProps }) => {
-          popperProps.className = arrow
-            ? `popover-content rap-${popperProps["data-placement"]}`
-            : `popover-content ${className ? className : ""}`;
+          popperProps.className = "popover-content";
+          if (arrow) {
+            popperProps.className = `popover-content rap-${
+              popperProps["data-placement"]
+            }`;
+          }
+          if (className) {
+            popperProps.className += ` ${className}`;
+          }
 
           if (motion) {
             var ArrowCallback = arrow ? (
