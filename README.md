@@ -18,7 +18,7 @@ yarn add react-awesome-popover
 **via CDN (unpkg)**
 
 ```code
-https://unpkg.com/react-awesome-popover@1.1.7/dest/react-awesome-popover.js
+https://unpkg.com/react-awesome-popover@1.3.2/dest/react-awesome-popover.js
 ```
 
 UMD library exposed as `ReactAwesomePopover`
