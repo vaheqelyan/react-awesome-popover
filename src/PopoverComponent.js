@@ -23,9 +23,7 @@ export default class PopoverComponent extends React.Component {
     } else {
       const child_popover = thispopover.querySelector(".popover-content");
       if (!child_popover) {
-        if (
-          close.getAttribute("data-id") != thispopover.getAttribute("data-id")
-        ) {
+        if (close.getAttribute("data-id") != thispopover.getAttribute("data-id")) {
           this.props.onClosePopover();
         }
       }
@@ -52,11 +50,7 @@ export default class PopoverComponent extends React.Component {
     const popover = this.refs.popover._node;
     const child = popover.querySelector(".popover-content");
     if (!child) {
-      popover.addEventListener(
-        "mouseleave",
-        this.closePopoverOnMouseLeave,
-        false
-      );
+      popover.addEventListener("mouseleave", this.closePopoverOnMouseLeave, false);
     }
     if (!e.target.closest(".manager")) {
       this.props.onClosePopover();
@@ -75,31 +69,21 @@ export default class PopoverComponent extends React.Component {
   }
 
   render() {
-    const {
-      placement,
-      arrow,
-      className,
-      motion,
-      id,
-      customArrow,
-      children
-    } = this.props;
+    const { placement, arrow, className, motion, id, customArrow, children } = this.props;
 
     return (
       <Popper placement={placement} ref="popover">
         {({ popperProps }) => {
           popperProps.className = "popover-content";
           if (arrow) {
-            popperProps.className = `popover-content rap-${
-              popperProps["data-placement"]
-            }`;
+            popperProps.className = `popover-content rap-${popperProps["data-placement"]}`;
           }
           if (className) {
             popperProps.className += ` ${className}`;
           }
 
           if (motion) {
-            var ArrowCallback = arrow ? (
+            const ArrowCallback = arrow ? (
               <ArrowComponent
                 customArrow={customArrow}
                 dataPlacement={popperProps["data-placement"]}

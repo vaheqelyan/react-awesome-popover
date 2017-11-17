@@ -2,13 +2,21 @@ import React from "react";
 import { Manager, Target, Popper, Arrow } from "react-popper";
 import randomID from "random-id";
 import PopoverComponent from "./PopoverComponent";
+import TargetComponent from "./TargetComponent";
 
 class Popover extends React.Component {
   constructor(props) {
     super(props);
     this.closePopover = this.closePopover.bind(this);
-
+    this.tooglePopover = this.tooglePopover.bind(this);
+    this.openPopover = this.openPopover.bind(this);
     this.state = { isOpen: props.isOpen, id: randomID(10, "a") };
+  }
+  openPopover() {
+    this.setState({ isOpen: true });
+  }
+  tooglePopover() {
+    this.setState({ isOpen: !this.state.isOpen });
   }
   closePopover() {
     this.setState({ isOpen: false });
@@ -30,52 +38,17 @@ class Popover extends React.Component {
       children
     } = this.props;
 
-    if (action === "click") {
-      children[0].props.onClick = e => {
-        var close = e.target.closest(".popover-content");
-        if (close) {
-          var getpopover = close.querySelector(".popover-content");
-          if (!getpopover) {
-            this.setState({ isOpen: !this.state.isOpen });
-          }
-        } else {
-          this.setState({ isOpen: !this.state.isOpen });
-        }
-      };
-    } else if (action === "hover") {
-      children[0].props.onMouseEnter = e => {
-        this.setState({ isOpen: true });
-      };
-      children[0].props.onMouseLeave = e => {
-        const getElement = e.relatedTarget;
-        if (getElement && getElement.nodeName) {
-          const close = getElement.closest(".manager");
-          if (close) {
-            const hasDataId = close.hasAttribute("data-target-id");
-            if (hasDataId) {
-              const getDataId = close.getAttribute("data-target-id");
-              if (getDataId) {
-                if (getDataId != this.state.id) this.closePopover();
-              }
-            }
-          }
-        }
-      };
-    }
-
     return (
-      <Manager
-        className="manager"
-        style={{ display: "inline" }}
-        data-target-id={this.state.id}
-      >
-        <Target>
-          {({ targetProps }) => (
-            <div className="target-container" {...targetProps}>
-              {this.props.children[0]}
-            </div>
-          )}
-        </Target>
+      <Manager className="manager" style={{ display: "inline" }} data-target-id={this.state.id}>
+        <TargetComponent
+          id={this.state.id}
+          closePopover={this.closePopover}
+          openPopover={this.openPopover}
+          tooglePopover={this.tooglePopover}
+          action={action}
+        >
+          {children[0]}
+        </TargetComponent>
 
         {this.state.isOpen ? (
           <PopoverComponent
@@ -101,7 +74,8 @@ Popover.defaultProps = {
   placement: "auto",
   action: "click",
   motion: false,
-  className: undefined
+  className: undefined,
+  isOpen: false
 };
 
 export default Popover;
