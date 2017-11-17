@@ -32,6 +32,7 @@ class Popover extends React.Component {
       arrow,
       onClick,
       placement,
+      modifiers,
       render,
       action,
       motion,
@@ -60,6 +61,7 @@ class Popover extends React.Component {
             customArrow={customArrow}
             onClosePopover={this.closePopover}
             placement={placement}
+            modifiers={modifiers}
             {...this.props}
             id={this.state.id}
           />
@@ -73,6 +75,7 @@ Popover.defaultProps = {
   arrow: true,
   placement: "auto",
   action: "click",
+  modifiers: {},
   motion: false,
   className: undefined,
   isOpen: false
