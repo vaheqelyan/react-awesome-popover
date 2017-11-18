@@ -128,4 +128,9 @@ You need to combine Popper style with motion style
   <td>Boolean</td>
   <td>Allows react-motion</td>
   </tr>
+  <tr>
+    <td>modifiers</td>
+    <td>Object</td>
+    <td>Allow passing <a href="https://github.com/FezVrasta/popper.js/blob/master/docs/_includes/popper-documentation.md#modifiers--object">Popper modifiers</a> as props.</td>
+  </tr>
 </table>
