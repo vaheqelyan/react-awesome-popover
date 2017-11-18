@@ -69,10 +69,10 @@ export default class PopoverComponent extends React.Component {
   }
 
   render() {
-    const { placement, arrow, className, motion, id, customArrow, children } = this.props;
+    const { placement, modifiers, arrow, className, motion, id, customArrow, children } = this.props;
 
     return (
-      <Popper placement={placement} ref="popover">
+      <Popper placement={placement} modifiers={modifiers} ref="popover">
         {({ popperProps }) => {
           popperProps.className = "popover-content";
           if (arrow) {
