@@ -3,6 +3,7 @@ import { Manager, Target, Popper, Arrow } from "react-popper";
 import randomID from "random-id";
 import PopoverComponent from "./PopoverComponent";
 import TargetComponent from "./TargetComponent";
+import closestWebshim from "./closest";
 
 class Popover extends React.Component {
   constructor(props) {
@@ -11,6 +12,9 @@ class Popover extends React.Component {
     this.tooglePopover = this.tooglePopover.bind(this);
     this.openPopover = this.openPopover.bind(this);
     this.state = { isOpen: props.isOpen, id: randomID(10, "a") };
+  }
+  componentWillMount() {
+    closestWebshim()
   }
   openPopover() {
     this.setState({ isOpen: true });
