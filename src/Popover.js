@@ -27,11 +27,11 @@ class Popover extends React.Component {
       render,
       action,
       motion,
-      children
+      children: [ firstChildren ]
     } = this.props;
 
     if (action === "click") {
-      children[0].props.onClick = e => {
+      firstChildren.props.onClick = e => {
         var close = e.target.closest(".popover-content");
         if (close) {
           var getpopover = close.querySelector(".popover-content");
@@ -43,10 +43,10 @@ class Popover extends React.Component {
         }
       };
     } else if (action === "hover") {
-      children[0].props.onMouseEnter = e => {
+      firstChildren.props.onMouseEnter = e => {
         this.setState({ isOpen: true });
       };
-      children[0].props.onMouseLeave = e => {
+      firstChildren.props.onMouseLeave = e => {
         const getElement = e.relatedTarget;
         if (getElement && getElement.nodeName) {
           const close = getElement.closest(".manager");
@@ -72,7 +72,7 @@ class Popover extends React.Component {
         <Target>
           {({ targetProps }) => (
             <div className="target-container" {...targetProps}>
-              {this.props.children[0]}
+              {firstChildren}
             </div>
           )}
         </Target>
