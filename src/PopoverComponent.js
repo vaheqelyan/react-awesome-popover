@@ -1,7 +1,6 @@
 import React from "react";
 import { Popper } from "react-popper";
 import ArrowComponent from "./ArrowComponent";
-import randomID from "random-id";
 
 export default class PopoverComponent extends React.Component {
   constructor(props) {
