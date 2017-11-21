@@ -43,6 +43,7 @@ class Popover extends React.Component {
       children
     } = this.props;
 
+<<<<<<< HEAD
     return (
       <Manager className="manager" style={{ display: "inline" }} data-target-id={this.state.id}>
         <TargetComponent
@@ -54,6 +55,54 @@ class Popover extends React.Component {
         >
           {children[0]}
         </TargetComponent>
+=======
+    if (action === "click") {
+      children[0].props.onClick = e => {
+        var close = e.target.closest(".popover-content");
+        if (close) {
+          var getpopover = close.querySelector(".popover-content");
+          if (!getpopover) {
+            this.setState({ isOpen: !this.state.isOpen });
+          }
+        } else {
+          this.setState({ isOpen: !this.state.isOpen });
+        }
+      };
+    } else if (action === "hover") {
+      children[0].props.onMouseEnter = e => {
+        this.setState({ isOpen: true });
+      };
+      children[0].props.onMouseLeave = e => {
+        const getElement = e.relatedTarget;
+        if (getElement && getElement.nodeName) {
+          const close = getElement.closest(".manager");
+          if (close) {
+            const hasDataId = close.hasAttribute("data-target-id");
+            if (hasDataId) {
+              const getDataId = close.getAttribute("data-target-id");
+              if (getDataId) {
+                if (getDataId != this.state.id) this.closePopover();
+              }
+            }
+          }
+        }
+      };
+    }
+
+    return (
+      <Manager
+        className="manager"
+        style={{ display: "inline" }}
+        data-target-id={this.state.id}
+      >
+        <Target>
+          {({ targetProps }) => (
+            <div className="target-container" {...targetProps}>
+              {this.props.children[0]}
+            </div>
+          )}
+        </Target>
+>>>>>>> parent of 49163be... refactor: destructuring arrays in a stateful component (render function)
 
         {this.state.isOpen ? (
           <PopoverComponent
