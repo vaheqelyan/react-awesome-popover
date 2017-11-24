@@ -22,7 +22,9 @@ export default class PopoverComponent extends React.Component {
     } else {
       const child_popover = thispopover.querySelector(".popover-content");
       if (!child_popover) {
-        if (close.getAttribute("data-id") != thispopover.getAttribute("data-id")) {
+        if (
+          close.getAttribute("data-id") != thispopover.getAttribute("data-id")
+        ) {
           this.props.onClosePopover();
         }
       }
@@ -49,7 +51,11 @@ export default class PopoverComponent extends React.Component {
     const popover = this.refs.popover._node;
     const child = popover.querySelector(".popover-content");
     if (!child) {
-      popover.addEventListener("mouseleave", this.closePopoverOnMouseLeave, false);
+      popover.addEventListener(
+        "mouseleave",
+        this.closePopoverOnMouseLeave,
+        false
+      );
     }
     if (!e.target.closest(".manager")) {
       this.props.onClosePopover();
@@ -68,14 +74,27 @@ export default class PopoverComponent extends React.Component {
   }
 
   render() {
-    const { placement, modifiers, arrow, className, motion, id, customArrow, children } = this.props;
+    const {
+      placement,
+      modifiers,
+      arrow,
+      className,
+      motion,
+      id,
+      customArrow,
+      children
+    } = this.props;
 
     return (
       <Popper placement={placement} modifiers={modifiers} ref="popover">
         {({ popperProps }) => {
           popperProps.className = "popover-content";
           if (arrow) {
-            popperProps.className = `popover-content rap-${popperProps["data-placement"]}`;
+            if (popperProps["data-placement"]) {
+              popperProps.className = `popover-content rap-${
+                popperProps["data-placement"].split("-")[0]
+              }`;
+            }
           }
           if (className) {
             popperProps.className += ` ${className}`;
