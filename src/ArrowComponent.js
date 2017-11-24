@@ -6,16 +6,16 @@ const ArrowComponent = ({ dataPlacement, customArrow }) => {
     <Arrow>
       {({ arrowProps }) => {
         arrowProps.style.position = "absolute";
-        if (dataPlacement === "right") {
+        if (/right/gi.test(dataPlacement)) {
           arrowProps.style.transform = "rotate(-180deg)";
           arrowProps.style.left = "-19px";
-        } else if (dataPlacement === "bottom") {
+        } else if (/bottom/gi.test(dataPlacement)) {
           arrowProps.style.transform = "rotate(-90deg)";
           arrowProps.style.top = "-20px";
-        } else if (dataPlacement === "top") {
+        } else if (/top/gi.test(dataPlacement)) {
           arrowProps.style.transform = "rotate(90deg)";
           arrowProps.style.bottom = "-21px";
-        } else if (dataPlacement === "left") {
+        } else if (/left/gi.test(dataPlacement)) {
           arrowProps.style.right = "-19px";
         }
 
