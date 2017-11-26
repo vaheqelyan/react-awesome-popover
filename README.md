@@ -99,7 +99,7 @@ You need to combine Popper style with motion style
     <td>click or hover.The default value is click</td>
   </tr>
   <tr>
-    <td>isOpen</td>
+    <td>defaultIsOpen</td>
     <td>Boolean</td>
     <td>Initial opened state when uncontrolled</td>
   </tr>
@@ -132,5 +132,10 @@ You need to combine Popper style with motion style
     <td>modifiers</td>
     <td>Object</td>
     <td>Allow passing <a href="https://github.com/FezVrasta/popper.js/blob/master/docs/_includes/popper-documentation.md#modifiers--object">Popper modifiers</a> as props.</td>
+  </tr>
+  <tr>
+    <td>open</td>
+    <td>Boolean</td>
+    <td>Whether the popover is visible. Passing this prop puts the popover in controlled mode.To make the popover completely manageable, you must pass the <code>null</code> value to the <code>action</code> prop</td>
   </tr>
 </table>
