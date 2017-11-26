@@ -100,6 +100,8 @@ export default class PopoverComponent extends React.Component {
             popperProps.className += ` ${className}`;
           }
 
+          popperProps.style.width = '250px'
+
           if (motion) {
             const ArrowCallback = arrow ? (
               <ArrowComponent
