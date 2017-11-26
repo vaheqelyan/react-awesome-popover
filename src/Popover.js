@@ -11,10 +11,10 @@ class Popover extends React.Component {
     this.closePopover = this.closePopover.bind(this);
     this.tooglePopover = this.tooglePopover.bind(this);
     this.openPopover = this.openPopover.bind(this);
-    this.state = { isOpen: props.isOpen, id: randomID(10, "a") };
+    this.state = { isOpen: props.defaultIsOpen, id: randomID(10, "a") };
   }
   componentWillMount() {
-    closestWebshim()
+    closestWebshim();
   }
   openPopover() {
     this.setState({ isOpen: true });
@@ -25,6 +25,11 @@ class Popover extends React.Component {
   closePopover() {
     this.setState({ isOpen: false });
   }
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.open !== prevProps.open) {
+      this.setState({ isOpen: this.props.open });
+    }
+  }
 
   render() {
     const {
@@ -32,7 +37,6 @@ class Popover extends React.Component {
       onClose,
       onOpen,
       customArrow,
-      isOpen,
       arrow,
       onClick,
       placement,
@@ -44,7 +48,11 @@ class Popover extends React.Component {
     } = this.props;
 
     return (
-      <Manager className="manager" style={{ display: "inline" }} data-target-id={this.state.id}>
+      <Manager
+        className="manager"
+        style={{ display: "inline" }}
+        data-target-id={this.state.id}
+      >
         <TargetComponent
           id={this.state.id}
           closePopover={this.closePopover}
@@ -82,7 +90,8 @@ Popover.defaultProps = {
   modifiers: {},
   motion: false,
   className: undefined,
-  isOpen: false
+  defaultIsOpen: false,
+  open: undefined
 };
 
 export default Popover;
