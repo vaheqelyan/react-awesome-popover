@@ -50,15 +50,7 @@ export default class TargetComponent extends React.Component {
   }
   click(e) {
     e.stopImmediatePropagation();
-    const close = e.target.closest(".popover-content");
-    if (close) {
-      const getpopover = close.querySelector(".popover-content");
-      if (!getpopover) {
-        this.props.tooglePopover();
-      }
-    } else {
-      this.props.tooglePopover();
-    }
+    if(!e.target.nextSibling) this.props.tooglePopover()
   }
   render() {
     return (
