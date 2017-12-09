@@ -5,6 +5,7 @@ import PopoverComponent from "./PopoverComponent";
 import TargetComponent from "./TargetComponent";
 import closestWebshim from "./closest";
 
+
 class Popover extends React.Component {
   constructor(props) {
     super(props);
@@ -25,12 +26,9 @@ class Popover extends React.Component {
   closePopover() {
     this.setState({ isOpen: false });
   }
-  componentDidUpdate(prevProps, prevState) {
-    if (this.props.open !== prevProps.open) {
-      this.setState({ isOpen: this.props.open });
-    }
+  componentWillReceiveProps({open}) {
+    this.setState({isOpen:open})
   }
-
   render() {
     const {
       className,
@@ -62,7 +60,6 @@ class Popover extends React.Component {
         >
           {children[0]}
         </TargetComponent>
-
         {this.state.isOpen ? (
           <PopoverComponent
             key={Math.random(1)}
@@ -91,7 +88,7 @@ Popover.defaultProps = {
   motion: false,
   className: undefined,
   defaultIsOpen: false,
-  open: undefined
+  open: false
 };
 
 export default Popover;
