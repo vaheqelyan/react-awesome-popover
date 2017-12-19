@@ -1,6 +1,6 @@
 ## React-awesome-popover
 
-[Demo](https://jsfiddle.net/vaheqelyan/6qogfdkr/12/show/light/)
+[Demo](https://jsfiddle.net/vaheqelyan/6qogfdkr/17/show/light/)
 
 ![](https://res.cloudinary.com/dxv8p5zck/image/upload/v1510661171/ezgif.com-crop_vbxgdc.gif)
 
