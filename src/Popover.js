@@ -5,7 +5,6 @@ import PopoverComponent from "./PopoverComponent";
 import TargetComponent from "./TargetComponent";
 import closestWebshim from "./closest";
 
-
 class Popover extends React.Component {
   constructor(props) {
     super(props);
