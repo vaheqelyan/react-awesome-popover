@@ -9,6 +9,10 @@ export default class PopoverComponent extends React.Component {
     this.onMouseOver = this.onMouseOver.bind(this);
     this.closePopoverOnMouseLeave = this.closePopoverOnMouseLeave.bind(this);
   }
+  onClick(e) {
+    console.log(e.target);
+    this.props.onClosePopover();
+  }
 
   closePopoverOnMouseLeave(e) {
     e.preventDefault();
@@ -63,14 +67,13 @@ export default class PopoverComponent extends React.Component {
   }
 
   componentDidMount() {
-    const { action, onOpen } = this.props;
-    if (action === "click") {
-      document.addEventListener("click", this.click, false);
-    } else if (action === "hover") {
-      document.addEventListener("mouseover", this.onMouseOver, false);
-    }
-
-    if (onOpen) onOpen();
+    // const { action, onOpen } = this.props;
+    // if (action === "click") {
+    //   document.addEventListener("click", this.click, false);
+    // } else if (action === "hover") {
+    //   document.addEventListener("mouseover", this.onMouseOver, false);
+    // }
+    // if (onOpen) onOpen();
   }
 
   render() {
@@ -86,47 +89,32 @@ export default class PopoverComponent extends React.Component {
     } = this.props;
 
     return (
-      <Popper placement={placement} modifiers={modifiers} ref="popover">
-        {({ popperProps }) => {
-          popperProps.className = "popover-content";
-          if (arrow) {
-            if (popperProps["data-placement"]) {
-              popperProps.className = `popover-content rap-${
-                popperProps["data-placement"].split("-")[0]
-              }`;
-            }
-          }
-          if (className) {
-            popperProps.className += ` ${className}`;
-          }
-
-          popperProps.style.width = '250px'
-
-          if (motion) {
-            const ArrowCallback = arrow ? (
-              <ArrowComponent
-                customArrow={customArrow}
-                dataPlacement={popperProps["data-placement"]}
-              />
-            ) : null;
-            return children[1]({ "data-id": id }, popperProps, ArrowCallback);
-          } else {
+      <React.Fragment>
+        <Popper placement={placement} modifiers={modifiers} ref="popover">
+          {({ popperProps, restProps }) => {
+            console.log(popperProps);
+            popperProps.className = "popover-content";
+            popperProps.style.zIndex = this.props.zIndex + 10;
             return (
-              <div {...popperProps} data-id={id}>
-                <div>
-                  {children[1]}
-                  {arrow ? (
-                    <ArrowComponent
-                      customArrow={customArrow}
-                      dataPlacement={popperProps["data-placement"]}
-                    />
-                  ) : null}
-                </div>
+              <div className="popper" {...popperProps}>
+                {children[1]}
+                {arrow ? (
+                  <ArrowComponent
+                    customArrow={customArrow}
+                    dataPlacement={popperProps["data-placement"]}
+                  />
+                ) : null}
               </div>
             );
-          }
-        }}
-      </Popper>
+          }}
+        </Popper>
+
+        <div
+          onClick={this.onClick.bind(this)}
+          id="overlay"
+          style={{ zIndex: this.props.zIndex }}
+        />
+      </React.Fragment>
     );
   }
 }
