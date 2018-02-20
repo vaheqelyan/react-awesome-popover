@@ -11,8 +11,22 @@ class Popover extends React.Component {
     this.closePopover = this.closePopover.bind(this);
     this.tooglePopover = this.tooglePopover.bind(this);
     this.openPopover = this.openPopover.bind(this);
-    this.state = { isOpen: props.defaultIsOpen, id: randomID(10, "a") };
+    this.state = {
+      isOpen: props.defaultIsOpen,
+      id: randomID(10, "a"),
+      zIndex: 0
+    };
   }
+  componentDidMount() {
+    if (!window.reactawesomepopover) {
+      this.setState({ zIndex: 1000 });
+      window.reactawesomepopover = 1000;
+    } else {
+      window.reactawesomepopover += 10;
+      this.setState({ zIndex: window.reactawesomepopover });
+    }
+  }
+
   componentWillMount() {
     closestWebshim();
   }
@@ -25,8 +39,8 @@ class Popover extends React.Component {
   closePopover() {
     this.setState({ isOpen: false });
   }
-  componentWillReceiveProps({open}) {
-    this.setState({isOpen:open})
+  componentWillReceiveProps({ open }) {
+    this.setState({ isOpen: open });
   }
   render() {
     const {
@@ -61,6 +75,7 @@ class Popover extends React.Component {
         </TargetComponent>
         {this.state.isOpen ? (
           <PopoverComponent
+            zIndex={this.state.zIndex}
             key={Math.random(1)}
             motion={motion}
             className={className}
