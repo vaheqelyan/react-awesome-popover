@@ -6,6 +6,7 @@ import { Target } from "react-popper";
 export default class TargetComponent extends React.Component {
   constructor(props) {
     super(props);
+    this.state = { zIndex: 1000 };
     this.click = this.click.bind(this);
     this.onMouseEnter = this.onMouseEnter.bind(this);
     this.onMouseLeave = this.onMouseLeave.bind(this);
@@ -50,7 +51,7 @@ export default class TargetComponent extends React.Component {
   }
   click(e) {
     e.stopImmediatePropagation();
-    if(!e.target.nextSibling) this.props.tooglePopover()
+    if (!e.target.nextSibling) this.props.tooglePopover();
   }
   render() {
     return (
