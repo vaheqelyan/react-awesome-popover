@@ -96,8 +96,10 @@ export default class PopoverComponent extends React.Component {
               popperProps.style.top += 8.4;
             } else if (/top/gi.test(popperProps["data-placement"])) {
               popperProps.style.top -= 8.4;
-            } else if (/left/gi.test(popperProps["data-placement"]))
-              popperProps.className = "popover-content";
+            } else if (/left/gi.test(popperProps["data-placement"])) {
+              popperProps.style.top += 8.4;
+            }
+            popperProps.className = "popover-content";
             popperProps.style.zIndex = this.props.zIndex + 10;
             return (
               <div className="popper" {...popperProps}>
