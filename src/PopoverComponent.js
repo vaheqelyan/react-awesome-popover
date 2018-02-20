@@ -92,7 +92,9 @@ export default class PopoverComponent extends React.Component {
       <React.Fragment>
         <Popper placement={placement} modifiers={modifiers} ref="popover">
           {({ popperProps, restProps }) => {
-            console.log(popperProps);
+            if (/bottom/gi.test(popperProps["data-placement"])) {
+              popperProps.style.top += 8.4;
+            }
             popperProps.className = "popover-content";
             popperProps.style.zIndex = this.props.zIndex + 10;
             return (
