@@ -3,6 +3,8 @@ import ReactDOM from "react-dom";
 
 import { Target } from "react-popper";
 
+import isOverlay from "./isOverlay";
+
 export default class TargetComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -12,22 +14,27 @@ export default class TargetComponent extends React.Component {
     this.onMouseLeave = this.onMouseLeave.bind(this);
   }
   onMouseLeave(e) {
-    const getElement = e.relatedTarget;
-    if (getElement && getElement.nodeName) {
-      const close = getElement.closest(".manager");
-      if (close) {
-        const hasDataId = close.hasAttribute("data-target-id");
-        if (hasDataId) {
-          const getDataId = close.getAttribute("data-target-id");
-          if (getDataId) {
-            if (getDataId != this.props.id) this.props.closePopover();
-          }
-        }
+    // this.props.closePopover();
+    console.log(e.relatedTarget, "asd");
+    var el = e.relatedTarget;
+    if (el.nodeName == "DIV") {
+      if (el.id == "overlay") {
+        this.props.closePopover();
       }
     }
   }
+
   onMouseEnter() {
     this.props.openPopover();
+    const target = ReactDOM.findDOMNode(this);
+
+    target.parentNode.children[1].addEventListener(
+      "mouseleave",
+      e => {
+        console.log(e.relatedTarget);
+      },
+      false
+    );
   }
   componentDidMount() {
     const { action } = this.props;
@@ -57,7 +64,11 @@ export default class TargetComponent extends React.Component {
     return (
       <Target>
         {({ targetProps }) => (
-          <div className="target-container" {...targetProps}>
+          <div
+            className="target-container"
+            style={{ zIndex: this.props.zIndex + 10 }}
+            {...targetProps}
+          >
             {this.props.children}
           </div>
         )}
