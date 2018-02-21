@@ -31,7 +31,7 @@ export default class TargetComponent extends React.Component {
     target.parentNode.children[1].addEventListener(
       "mouseleave",
       e => {
-        console.log(e.relatedTarget);
+        console.log(isOverlay(e.relatedTarget));
       },
       false
     );
