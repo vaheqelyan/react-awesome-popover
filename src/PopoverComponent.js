@@ -16,6 +16,8 @@ class Overlay extends React.Component {
     const { touch, onClosePopover } = this.props;
     if (touch) {
       this.refs.node.removeEventListener("touchstart", onClosePopover, false);
+    } else {
+      this.refs.node.removeEventListener("click", onClosePopover, false);
     }
   }
 
