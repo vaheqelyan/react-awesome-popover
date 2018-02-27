@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Target } from "react-popper";
+import isOverlay from "./isOverlay";
 
 export default class TargetComponent extends React.Component {
   constructor(props) {
@@ -10,12 +11,11 @@ export default class TargetComponent extends React.Component {
     this.onMouseLeave = this.onMouseLeave.bind(this);
   }
   onMouseLeave({ relatedTarget: el }) {
-    if (el.nodeName == "DIV") {
-      if (el.id == "rap-overlay") {
-        this.props.closePopover();
-        return;
-      }
+    if (isOverlay(el)) {
+      this.props.closePopover();
+      return;
     }
+
     var target = el.closest(".rap-target-container");
     if (target) {
       if (target.hasAttribute("data-target-id")) {
@@ -59,6 +59,7 @@ export default class TargetComponent extends React.Component {
     this.props.tooglePopover();
   };
   render() {
+    const { zIndex, isOpen, id, children } = this.props;
     const style = this.props.isOpen
       ? { zIndex: this.props.zIndex + 101 }
       : { zIndex: this.props.zIndex };
