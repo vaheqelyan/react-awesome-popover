@@ -15,13 +15,16 @@
     "react-motion"
   ],
   "scripts": {
-    "dev": "rollup -c -w",
-    "build": "rollup -c"
+    "package-build": "rollup -c",
+    "package-watch": "rollup -c -w",
+    "package-serve": "http-server -c-1 -p 1111"
   },
   "files": ["dest/react-awesome-popover.js", "dest/react-awesome-popover.css"],
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-plugin-external-helpers": "^6.22.0",
+    "babel-plugin-jsx-control-statements": "^3.2.8",
+    "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-es2015-loose": "^8.0.0",
@@ -30,6 +33,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-react-optimize": "^1.0.1",
     "babel-preset-stage-0": "^6.24.1",
+    "http-server": "^0.11.1",
     "react-motion": "^0.5.2",
     "react-motion-ui-pack": "^0.10.3",
     "rollup": "^0.51.3",
@@ -41,6 +45,8 @@
     "rollup-watch": "^4.3.1"
   },
   "dependencies": {
+    "lodash.debounce": "^4.0.8",
+    "lodash.random": "^3.2.0",
     "random-id": "^0.0.2",
     "react": "^6.2.0",
     "react-dom": "^16.1.0",
