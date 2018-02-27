@@ -5,7 +5,7 @@ import randomID from "random-id";
 class ArrowComponent extends React.Component {
   constructor() {
     super();
-    this.id = randomID(19, "a"); // random
+    this.id = randomID(19, "a");
   }
   render() {
     const { dataPlacement, customArrow } = this.props;
