@@ -6,8 +6,12 @@
         "modules": false
       }
     ],
-    "react",
-    "react-optimize"
+    "react"
   ],
-  "plugins":["external-helpers","transform-object-rest-spread"]
+  "plugins": [
+    "external-helpers",
+    "transform-object-rest-spread",
+    "transform-class-properties",
+    "jsx-control-statements"
+  ]
 }
