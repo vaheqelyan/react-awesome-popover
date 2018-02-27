@@ -1,0 +1,6 @@
+{
+  "editor.lineNumbers": "off",
+  "editor.formatOnSave": true,
+  "editor.fontSize": 18,
+  "prettier.printWidth": 80
+}
