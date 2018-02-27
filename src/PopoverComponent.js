@@ -76,7 +76,8 @@ export default class PopoverComponent extends React.Component {
       motion,
       customArrow,
       children,
-      onClosePopover
+      onClosePopover,
+      touch
     } = this.props;
 
     return (
