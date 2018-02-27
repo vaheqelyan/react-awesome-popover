@@ -60,14 +60,12 @@ export default class TargetComponent extends React.Component {
   };
   render() {
     const { zIndex, isOpen, id, children } = this.props;
-    const style = this.props.isOpen
-      ? { zIndex: this.props.zIndex + 101 }
-      : { zIndex: this.props.zIndex };
+    const style = isOpen ? { zIndex: zIndex + 101 } : { zIndex: zIndex };
     return (
       <Target innerRef={this.getNode}>
         {({ targetProps }) => (
           <div
-            data-target-id={this.props.id}
+            data-target-id={id}
             className="rap-target-container"
             style={style}
             {...targetProps}
