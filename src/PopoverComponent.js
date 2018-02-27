@@ -1,79 +1,65 @@
 import React from "react";
 import { Popper } from "react-popper";
 import ArrowComponent from "./ArrowComponent";
+import isOverlay from "./isOverlay";
+
+class Overlay extends React.Component {
+  componentDidMount() {
+    const { touch, onClosePopover } = this.props;
+    if (touch) {
+      this.refs.node.addEventListener("touchstart", onClosePopover, false);
+    } else {
+      this.refs.node.addEventListener("click", onClosePopover, false);
+    }
+  }
+  componentWillUnmount() {
+    const { touch, onClosePopover } = this.props;
+  }
+
+  render() {
+    const { onClosePopover, zIndex } = this.props;
+    return (
+      <div
+        ref="node"
+        onClick={onClosePopover}
+        id="rap-overlay"
+        style={{
+          zIndex: this.props.zIndex + 100
+        }}
+      />
+    );
+  }
+}
 
 export default class PopoverComponent extends React.Component {
   constructor(props) {
-    super(props);
-    this.click = this.click.bind(this);
-    this.onMouseOver = this.onMouseOver.bind(this);
-    this.closePopoverOnMouseLeave = this.closePopoverOnMouseLeave.bind(this);
-  }
-  onClick(e) {
-    console.log(e.target);
-    this.props.onClosePopover();
-  }
-
-  closePopoverOnMouseLeave(e) {
-    e.preventDefault();
-    this.props.onClosePopover();
-  }
-  click(e) {
-    const thispopover = this.refs.popover._node;
-    const close = e.target.closest(".popover-content");
-    if (!close) {
-      this.props.onClosePopover();
-    } else {
-      const child_popover = thispopover.querySelector(".popover-content");
-      if (!child_popover) {
-        if (
-          close.getAttribute("data-id") != thispopover.getAttribute("data-id")
-        ) {
-          this.props.onClosePopover();
-        }
-      }
-    }
+    super();
+    this.ms = this.ms.bind(this);
   }
 
   componentWillUnmount() {
     const { action, onClose } = this.props;
-    if (action === "click") {
-      document.removeEventListener("click", this.click, false);
-    } else if (action === "hover") {
-      document.removeEventListener("mouseover", this.onMouseOver, false);
-      this.refs.popover._node.removeEventListener(
-        "mouseleave",
-        this.closePopoverOnMouseLeave,
-        false
-      );
+    if (action === "hover") {
+      this.refs.popover._node.removeEventListener("mouseleave", this.ms, false);
     }
 
     if (onClose) onClose();
   }
 
-  onMouseOver(e) {
-    const popover = this.refs.popover._node;
-    const child = popover.querySelector(".popover-content");
-    if (!child) {
-      popover.addEventListener(
+  ms = ({ relatedTarget }) =>
+    isOverlay(relatedTarget) && this.props.onClosePopover();
+
+  componentDidMount() {
+    const { action, onOpen } = this.props;
+    if (action === "hover") {
+      this.refs.popover._node.addEventListener(
         "mouseleave",
-        this.closePopoverOnMouseLeave,
+        this.ms.bind(this),
         false
       );
     }
-    if (!e.target.closest(".manager")) {
-      this.props.onClosePopover();
-    }
-  }
 
-  componentDidMount() {
-    // const { action, onOpen } = this.props;
-    // if (action === "click") {
-    //   document.addEventListener("click", this.click, false);
-    // } else if (action === "hover") {
-    //   document.addEventListener("mouseover", this.onMouseOver, false);
-    // }
-    // if (onOpen) onOpen();
+    if (onOpen) onOpen();
   }
 
   render() {
@@ -83,9 +69,9 @@ export default class PopoverComponent extends React.Component {
       arrow,
       className,
       motion,
-      id,
       customArrow,
-      children
+      children,
+      onClosePopover
     } = this.props;
 
     return (
@@ -93,18 +79,86 @@ export default class PopoverComponent extends React.Component {
         <Popper placement={placement} modifiers={modifiers} ref="popover">
           {({ popperProps, restProps }) => {
             if (/bottom/gi.test(popperProps["data-placement"])) {
-              popperProps.style.top += 8.4;
-            } else if (/top/gi.test(popperProps["data-placement"])) {
-              popperProps.style.top -= 8.4;
-            } else if (/left/gi.test(popperProps["data-placement"])) {
-              popperProps.style.left -= 8.4;
-            } else if (/right/gi.test(popperProps["data-placement"])) {
-              popperProps.style.left += 8.4;
+              popperProps = {
+                ...popperProps,
+                ...{
+                  style: {
+                    ...popperProps.style,
+                    ...{ top: (popperProps.style.top += 8.4) }
+                  }
+                }
+              };
             }
-            popperProps.className = "popover-content";
-            popperProps.style.zIndex = this.props.zIndex + 10;
+            if (/top/gi.test(popperProps["data-placement"])) {
+              popperProps = {
+                ...popperProps,
+                ...{
+                  style: {
+                    ...popperProps.style,
+                    ...{ top: (popperProps.style.top -= 8.4) }
+                  }
+                }
+              };
+            }
+            if (/left/gi.test(popperProps["data-placement"])) {
+              popperProps = {
+                ...popperProps,
+                ...{
+                  style: {
+                    ...popperProps.style,
+                    ...{ left: (popperProps.style.left -= 8.4) }
+                  }
+                }
+              };
+            }
+            if (/right/gi.test(popperProps["data-placement"])) {
+              popperProps = {
+                ...popperProps,
+                ...{
+                  style: {
+                    ...popperProps.style,
+                    ...{ left: (popperProps.style.left += 8.4) }
+                  }
+                }
+              };
+            }
+            popperProps = {
+              ...popperProps,
+              ...{
+                style: {
+                  ...popperProps.style,
+                  ...{ zIndex: this.props.zIndex + 101 }
+                }
+              }
+            };
+
+            if (motion) {
+              const ArrowCallback = arrow ? (
+                <ArrowComponent
+                  customArrow={customArrow}
+                  dataPlacement={popperProps["data-placement"]}
+                />
+              ) : null;
+              return children[1](popperProps, ArrowCallback);
+            } else {
+              return (
+                <div className="rap-popover-content" {...popperProps}>
+                  <div>
+                    {children[1]}
+                    {arrow ? (
+                      <ArrowComponent
+                        arraySize={this.props.arraySize}
+                        customArrow={customArrow}
+                        dataPlacement={popperProps["data-placement"]}
+                      />
+                    ) : null}
+                  </div>
+                </div>
+              );
+            }
+
             return (
-              <div className="popper" {...popperProps}>
+              <div className="rap-popover-content" {...popperProps}>
                 {children[1]}
                 {arrow ? (
                   <ArrowComponent
@@ -116,11 +170,10 @@ export default class PopoverComponent extends React.Component {
             );
           }}
         </Popper>
-
-        <div
-          onClick={this.onClick.bind(this)}
-          id="overlay"
-          style={{ zIndex: this.props.zIndex }}
+        <Overlay
+          touch={touch}
+          onClosePopover={onClosePopover}
+          zIndex={this.props.zIndex}
         />
       </React.Fragment>
     );
