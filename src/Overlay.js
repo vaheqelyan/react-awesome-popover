@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 
-export default class Overlay extends Component {
+export default class Overlay extends React.Component {
   componentDidMount() {
     const { touch, onClosePopover } = this.props;
     if (touch) {
