@@ -5,7 +5,7 @@ import randomID from "random-id";
 class ArrowComponent extends React.Component {
   constructor() {
     super();
-    this.id = randomID(19, "a");
+    this.id = randomID(19, "a"); // random
   }
   render() {
     const { dataPlacement, customArrow } = this.props;
@@ -26,7 +26,6 @@ class ArrowComponent extends React.Component {
           } else if (/left/gi.test(dataPlacement)) {
             arrowProps.style.right = "-19px";
           }
-
           return customArrow ? (
             <span {...arrowProps}>{customArrow}</span>
           ) : (
