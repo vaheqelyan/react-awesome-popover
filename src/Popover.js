@@ -18,18 +18,16 @@ class Popover extends React.Component {
     };
   }
   componentDidMount() {
+    closestWebshim();
     if (!window.reactawesomepopover) {
-      this.setState({ zIndex: 1000 });
-      window.reactawesomepopover = 1000;
+      this.setState({ zIndex: 100 });
+      window.reactawesomepopover = 100;
     } else {
       window.reactawesomepopover += 10;
       this.setState({ zIndex: window.reactawesomepopover });
     }
   }
 
-  componentWillMount() {
-    closestWebshim();
-  }
   openPopover() {
     this.setState({ isOpen: true });
   }
@@ -55,28 +53,27 @@ class Popover extends React.Component {
       render,
       action,
       motion,
-      children
+      children,
+      touch
     } = this.props;
 
     return (
-      <Manager
-        className="manager"
-        style={{ display: "inline" }}
-        data-target-id={this.state.id}
-      >
+      <Manager className="rap-manager">
         <TargetComponent
           id={this.state.id}
           closePopover={this.closePopover}
           openPopover={this.openPopover}
           tooglePopover={this.tooglePopover}
           action={action}
+          zIndex={this.state.zIndex}
+          isOpen={this.state.isOpen}
+          touch={touch}
         >
           {children[0]}
         </TargetComponent>
-        {this.state.isOpen ? (
+        <If condition={this.state.isOpen}>
           <PopoverComponent
             zIndex={this.state.zIndex}
-            key={Math.random(1)}
             motion={motion}
             className={className}
             onClose={onClose}
@@ -85,10 +82,10 @@ class Popover extends React.Component {
             onClosePopover={this.closePopover}
             placement={placement}
             modifiers={modifiers}
+            touch={touch}
             {...this.props}
-            id={this.state.id}
           />
-        ) : null}
+        </If>
       </Manager>
     );
   }
@@ -102,7 +99,8 @@ Popover.defaultProps = {
   motion: false,
   className: undefined,
   defaultIsOpen: false,
-  open: false
+  open: false,
+  touch: false
 };
 
 export default Popover;
