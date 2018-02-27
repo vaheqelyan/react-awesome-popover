@@ -2,6 +2,7 @@ import React from "react";
 import { Popper } from "react-popper";
 import ArrowComponent from "./ArrowComponent";
 import isOverlay from "./isOverlay";
+import Overlay from "./Overlay";
 
 export default class PopoverComponent extends React.Component {
   constructor(props) {
