@@ -25,11 +25,7 @@ export default class PopoverComponent extends React.Component {
   componentDidMount() {
     const { action, onOpen } = this.props;
     if (action === "hover") {
-      this.refs.popover._node.addEventListener(
-        "mouseleave",
-        this.ms.bind(this),
-        false
-      );
+      this.refs.popover._node.addEventListener("mouseleave", this.ms, false);
     }
 
     if (onOpen) onOpen();
