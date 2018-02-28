@@ -1,7 +1,7 @@
 {
   "name": "react-awesome-popover",
   "description": "A smart popover component with animation support for ReactJS",
-  "version": "1.6.3",
+  "version": "2.0.0",
   "main": "dest/react-awesome-popover.js",
   "repository": "https://github.com/vaheqelyan/react-awesome-popover.git",
   "author": "vaheqelyan <vahe.araqelyan.2013@hotmail.com>",
@@ -19,10 +19,7 @@
     "package-watch": "rollup -c -w",
     "package-serve": "http-server -c-1 -p 1111"
   },
-  "files": [
-    "dest/react-awesome-popover.js",
-    "dest/react-awesome-popover.css"
-  ],
+  "files": ["dest/react-awesome-popover.js", "dest/react-awesome-popover.css"],
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-plugin-external-helpers": "^6.22.0",
