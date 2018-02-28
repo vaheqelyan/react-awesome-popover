@@ -109,7 +109,10 @@ export default class PopoverComponent extends React.Component {
                   dataPlacement={popperProps["data-placement"]}
                 />
               ) : null;
-              return children[1](popperProps, ArrowCallback);
+              return children[1](
+                { ...popperProps, ...{ className: "rap-popover-content" } },
+                ArrowCallback
+              );
             } else {
               return (
                 <div className="rap-popover-content" {...popperProps}>
