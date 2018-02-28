@@ -13,7 +13,7 @@ class Popover extends React.Component {
     this.openPopover = this.openPopover.bind(this);
     this.state = {
       isOpen: props.defaultIsOpen,
-      id: undefined,
+      id: null,
       zIndex: 0
     };
   }
