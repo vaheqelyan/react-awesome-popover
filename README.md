@@ -5,12 +5,17 @@
 ![](https://res.cloudinary.com/dxv8p5zck/image/upload/v1510661171/ezgif.com-crop_vbxgdc.gif)
 
 ### Installation
-* * *
+
+---
+
 **via NPM**
+
 ```code
 npm i react-awesome-popover
 ```
+
 **via Yarn**
+
 ```code
 yarn add react-awesome-popover
 ```
@@ -18,13 +23,25 @@ yarn add react-awesome-popover
 **via CDN (unpkg)**
 
 ```code
-https://unpkg.com/react-awesome-popover@1.3.2/dest/react-awesome-popover.js
+https://unpkg.com/react-awesome-popover@2.0.0/dest/react-awesome-popover.js
 ```
 
 UMD library exposed as `ReactAwesomePopover`
 
 ```js
 const Popover = ReactAwesomePopover;
+```
+
+Don't forget to use stylesheet.
+
+```js
+import "react-awesome-popover/dest/react-awesome-popover.css";
+```
+
+**via CDN (unpkg)**
+
+```code
+https://unpkg.com/react-awesome-popover@2.0.0/dest/react-awesome-popover.css
 ```
 
 ### Example
@@ -39,14 +56,43 @@ ReactDOM.render(
 );
 ```
 
+> The component supports server-side rendering
+
+### You can also use nested popovers
+
+```jsx
+ReactDOM.render(
+  <Popover>
+    <button>The Target</button>
+    <div>
+      ...
+      <Popover>
+        <button>The Target</button>
+        <div>
+          ...
+          <Popover>
+            <button>The Target</button>
+            <div>The content</div>
+          </Popover>
+          ...
+        </div>
+      </Popover>
+      ...
+    </div>
+  </Popover>,
+  document.body
+);
+```
+
 ### +With react-motion
+
 Set the Motion property to True. Second child becomes a function, It returns the id, popperProps and Arrow.
 You need to combine Popper style with motion style
 
 ```jsx
 <Popover motion>
   <button>Click</button>
-  {(id, popperProps, Arrow) => (
+  {(popperProps, Arrow) => (
     <Motion defaultStyle={{ rotateY: 90 }} style={{ rotateY: spring(0) }}>
       {({ rotateY }) => {
         var motionStyle = {
@@ -55,7 +101,6 @@ You need to combine Popper style with motion style
         return (
           <div
             {...popperProps}
-            {...id}
             style={{ ...popperProps.style, ...motionStyle }}
           >
             <h1>React-motion!</h1>
@@ -65,12 +110,10 @@ You need to combine Popper style with motion style
       }}
     </Motion>
   )}
-</Popover>;
-
+</Popover>
 ```
 
 ### Props
-* *  * 
 
 <table>
   <tr>
@@ -137,5 +180,10 @@ You need to combine Popper style with motion style
     <td>open</td>
     <td>Boolean</td>
     <td>Whether the popover is visible. Passing this prop puts the popover in controlled mode.To make the popover completely manageable, you must pass the <code>null</code> value to the <code>action</code> prop</td>
+  </tr>
+  <tr>
+    <td>touch</td>
+    <td>Boolean</td>
+    <td>The touch event will be triggered instead of the click event</td>
   </tr>
 </table>
