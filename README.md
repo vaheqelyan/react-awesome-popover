@@ -1,6 +1,6 @@
 ## React-awesome-popover
 
-[Demo](https://jsfiddle.net/vaheqelyan/6qogfdkr/18/show/light/)
+[Demo](https://jsfiddle.net/vaheqelyan/6qogfdkr/36/show/light/)
 
 ![](https://res.cloudinary.com/dxv8p5zck/image/upload/v1510661171/ezgif.com-crop_vbxgdc.gif)
 
@@ -32,7 +32,7 @@ UMD library exposed as `ReactAwesomePopover`
 const Popover = ReactAwesomePopover;
 ```
 
-Don't forget to use stylesheet.
+Do not forget to use the stylesheet.
 
 ```js
 import "react-awesome-popover/dest/react-awesome-popover.css";
