@@ -13,19 +13,21 @@ class Popover extends React.Component {
     this.openPopover = this.openPopover.bind(this);
     this.state = {
       isOpen: props.defaultIsOpen,
-      id: randomID(10, "a"),
+      id: undefined,
       zIndex: 0
     };
   }
   componentDidMount() {
     closestWebshim();
+    var zi;
     if (!window.reactawesomepopover) {
-      this.setState({ zIndex: 100 });
+      zi = 100;
       window.reactawesomepopover = 100;
     } else {
       window.reactawesomepopover += 10;
-      this.setState({ zIndex: window.reactawesomepopover });
+      zi = window.reactawesomepopover;
     }
+    this.setState({ zIndex: zi, id: randomID(10, "a") });
   }
 
   openPopover() {
