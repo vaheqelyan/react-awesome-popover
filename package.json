@@ -46,8 +46,8 @@
   },
   "dependencies": {
     "random-id": "^0.0.2",
-    "react": "^6.2.0",
-    "react-dom": "^16.1.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
     "react-popper": "^0.7.4"
   },
   "peerDependencies": {
