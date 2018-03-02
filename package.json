@@ -47,13 +47,11 @@
   "dependencies": {
     "random-id": "^0.0.2",
     "react": "^16.2.0",
-    "react-dom": "^16.2.0",
     "react-popper": "^0.7.4"
   },
   "peerDependencies": {
     "random-id": "^0.0.2",
     "react": "^0.14.9 || ^15.3.0 || ^16.0.0",
-    "react-dom": "^0.14.9 || ^15.3.0 || ^16.0.0",
     "react-popper": "^0.7.4"
   }
 }
