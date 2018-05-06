@@ -59,14 +59,14 @@ export default class TargetComponent extends React.Component {
     this.props.tooglePopover();
   };
   render() {
-    const { zIndex, isOpen, id, children } = this.props;
+    const { zIndex, isOpen, id, children, targetClass } = this.props;
     const style = isOpen ? { zIndex: zIndex + 101 } : { zIndex: zIndex };
     return (
       <Target innerRef={this.getNode}>
         {({ targetProps }) => (
           <div
             data-target-id={id}
-            className="rap-target-container"
+            className={`rap-target-container ${targetClass}`}
             style={style}
             {...targetProps}
           >
