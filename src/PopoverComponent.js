@@ -107,6 +107,7 @@ export default class PopoverComponent extends React.Component {
             if (motion) {
               const ArrowCallback = arrow ? (
                 <ArrowComponent
+                  arrowClass={arrowClass}
                   customArrow={customArrow}
                   dataPlacement={popperProps["data-placement"]}
                 />
