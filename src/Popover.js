@@ -103,11 +103,11 @@ Popover.defaultProps = {
   action: "click",
   modifiers: {},
   motion: false,
-  targetClass: undefined,
-  contentClass: undefined,
+  targetClass: "",
+  contentClass: "",
   defaultIsOpen: false,
   open: false,
-  arrowClass: undefined,
+  arrowClass: null,
   touch: false
 };
 
