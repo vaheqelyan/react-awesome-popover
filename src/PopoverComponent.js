@@ -36,7 +36,7 @@ export default class PopoverComponent extends React.Component {
       placement,
       modifiers,
       arrow,
-      className,
+      contentClass,
       motion,
       customArrow,
       children,
@@ -115,7 +115,10 @@ export default class PopoverComponent extends React.Component {
               );
             } else {
               return (
-                <div className="rap-popover-content" {...popperProps}>
+                <div
+                  className={`rap-popover-content ${contentClass}`}
+                  {...popperProps}
+                >
                   <div>
                     {children[1]}
                     {arrow ? (
