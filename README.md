@@ -132,9 +132,19 @@ You need to combine Popper style with motion style
     <td>The placement of the popover.<br/>Read more.The default value is auto</td>
   </tr>
   <tr>
-    <td>className</td>
+    <td>targetClass</td>
     <td>String</td>
-    <td>The className of the popover</td>
+    <td>The name of the target class</td>
+  </tr>
+  <tr>
+    <td>contentClass</td>
+    <td>String</td>
+    <td>The name of the content class</td>
+  </tr>
+  <tr>
+    <td>arrowClass</td>
+    <td>String</td>
+    <td>The name of the arrow class</td>
   </tr>
   <tr>
     <td>action</td>
