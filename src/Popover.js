@@ -44,7 +44,7 @@ class Popover extends React.Component {
   }
   render() {
     const {
-      className,
+      contentClass,
       onClose,
       onOpen,
       customArrow,
@@ -56,12 +56,14 @@ class Popover extends React.Component {
       action,
       motion,
       children,
+      targetClass,
       touch
     } = this.props;
 
     return (
       <Manager className="rap-manager">
         <TargetComponent
+          targetClass={targetClass}
           id={this.state.id}
           closePopover={this.closePopover}
           openPopover={this.openPopover}
@@ -77,7 +79,7 @@ class Popover extends React.Component {
           <PopoverComponent
             zIndex={this.state.zIndex}
             motion={motion}
-            className={className}
+            contentClass={contentClass}
             onClose={onClose}
             onOpen={onOpen}
             customArrow={customArrow}
@@ -99,7 +101,8 @@ Popover.defaultProps = {
   action: "click",
   modifiers: {},
   motion: false,
-  className: undefined,
+  targetClass: "",
+  contentClass: "",
   defaultIsOpen: false,
   open: false,
   touch: false
