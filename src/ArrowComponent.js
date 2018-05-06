@@ -8,7 +8,7 @@ class ArrowComponent extends React.Component {
     this.id = randomID(19, "a");
   }
   render() {
-    const { dataPlacement, customArrow } = this.props;
+    const { dataPlacement, customArrow, arrowClass } = this.props;
     const { id } = this;
     return (
       <Arrow>
@@ -26,10 +26,13 @@ class ArrowComponent extends React.Component {
           } else if (/left/gi.test(dataPlacement)) {
             arrowProps.style.right = "-19px";
           }
+
           return customArrow ? (
-            <span {...arrowProps}>{customArrow}</span>
+            <span {...arrowProps} className={arrowClass}>
+              {customArrow}
+            </span>
           ) : (
-            <span {...arrowProps}>
+            <span {...arrowProps} className={arrowClass}>
               <svg
                 xmlnsXlink="http://www.w3.org/1999/xlink"
                 viewBox="0 0 100 100"
