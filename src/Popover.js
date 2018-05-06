@@ -45,6 +45,7 @@ class Popover extends React.Component {
   render() {
     const {
       contentClass,
+      arrowClass,
       onClose,
       onOpen,
       customArrow,
@@ -87,6 +88,7 @@ class Popover extends React.Component {
             placement={placement}
             modifiers={modifiers}
             touch={touch}
+            arrowClass={arrowClass}
             {...this.props}
           />
         </If>
