@@ -110,7 +110,10 @@ export default class PopoverComponent extends React.Component {
                 />
               ) : null;
               return children[1](
-                { ...popperProps, ...{ className: "rap-popover-content" } },
+                {
+                  ...popperProps,
+                  ...{ className: `rap-popover-content ${contentClass}` }
+                },
                 ArrowCallback
               );
             } else {
@@ -134,7 +137,10 @@ export default class PopoverComponent extends React.Component {
             }
 
             return (
-              <div className="rap-popover-content" {...popperProps}>
+              <div
+                className={`rap-popover-content ${contentClass}`}
+                {...popperProps}
+              >
                 {children[1]}
                 {arrow ? (
                   <ArrowComponent
