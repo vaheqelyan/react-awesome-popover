@@ -148,6 +148,7 @@ export default class PopoverComponent extends React.Component {
                 {children[1]}
                 {arrow ? (
                   <ArrowComponent
+                    arrowClass={arrowClass}
                     customArrow={customArrow}
                     dataPlacement={popperProps["data-placement"]}
                   />
