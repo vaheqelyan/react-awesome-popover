@@ -8,9 +8,6 @@ import closestWebshim from "./closest";
 class Popover extends React.Component {
   constructor(props) {
     super(props);
-    this.closePopover = this.closePopover.bind(this);
-    this.tooglePopover = this.tooglePopover.bind(this);
-    this.openPopover = this.openPopover.bind(this);
     this.state = {
       isOpen: props.defaultIsOpen,
       id: null,
@@ -19,26 +16,18 @@ class Popover extends React.Component {
   }
   componentDidMount() {
     closestWebshim();
-    var zi;
-    if (!window.reactawesomepopover) {
-      zi = 100;
-      window.reactawesomepopover = 100;
-    } else {
-      window.reactawesomepopover += 10;
-      zi = window.reactawesomepopover;
-    }
-    this.setState({ zIndex: zi, id: randomID(10, "a") });
+    this.setState({ zIndex: 100, id: randomID(10, "a") });
   }
 
-  openPopover() {
+  openPopover = () => {
     this.setState({ isOpen: true });
-  }
-  tooglePopover() {
+  };
+  tooglePopover = () => {
     this.setState({ isOpen: !this.state.isOpen });
-  }
-  closePopover() {
+  };
+  closePopover = () => {
     this.setState({ isOpen: false });
-  }
+  };
   componentWillReceiveProps({ open }) {
     this.setState({ isOpen: open });
   }
@@ -104,7 +93,7 @@ Popover.defaultProps = {
   modifiers: {},
   motion: false,
   targetClass: "",
-  contentClass: "",
+  contentClass: null,
   defaultIsOpen: false,
   open: false,
   arrowClass: null,
