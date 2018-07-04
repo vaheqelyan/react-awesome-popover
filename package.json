@@ -19,7 +19,10 @@
     "package-watch": "rollup -c -w",
     "package-serve": "http-server -c-1 -p 1111"
   },
-  "files": ["dest/react-awesome-popover.js", "dest/react-awesome-popover.css"],
+  "files": [
+    "dest/react-awesome-popover.js",
+    "dest/react-awesome-popover.css"
+  ],
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-plugin-external-helpers": "^6.22.0",
