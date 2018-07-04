@@ -6,11 +6,6 @@ import isOverlay from "./isOverlay";
 import Overlay from "./Overlay";
 
 export default class PopoverComponent extends React.Component {
-  constructor(props) {
-    super();
-    this.ms = this.ms.bind(this);
-  }
-
   componentWillUnmount() {
     const { action, onClose } = this.props;
     if (action === "hover") {
@@ -115,17 +110,14 @@ export default class PopoverComponent extends React.Component {
               return children[1](
                 {
                   ...popperProps,
-                  ...{ className: `rap-popover-content ${contentClass}` }
+                  ...{ className: contentClass }
                 },
                 ArrowCallback
               );
             } else {
               return (
-                <div
-                  className={`rap-popover-content ${contentClass}`}
-                  {...popperProps}
-                >
-                  <div>
+                <div className={contentClass} {...popperProps}>
+                  <React.Fragment>
                     {children[1]}
                     {arrow ? (
                       <ArrowComponent
@@ -135,16 +127,13 @@ export default class PopoverComponent extends React.Component {
                         dataPlacement={popperProps["data-placement"]}
                       />
                     ) : null}
-                  </div>
+                  </React.Fragment>
                 </div>
               );
             }
 
             return (
-              <div
-                className={`rap-popover-content ${contentClass}`}
-                {...popperProps}
-              >
+              <div className={contentClass} {...popperProps}>
                 {children[1]}
                 {arrow ? (
                   <ArrowComponent
