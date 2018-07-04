@@ -1,6 +1,6 @@
 ## React-awesome-popover
 
-[Demo](https://jsfiddle.net/vaheqelyan/6qogfdkr/36/show/light/)
+[Demo](http://jsfiddle.net/6qogfdkr/138/embedded/result/)
 
 ![](https://res.cloudinary.com/dxv8p5zck/image/upload/v1510661171/ezgif.com-crop_vbxgdc.gif)
 
@@ -41,7 +41,7 @@ import "react-awesome-popover/dest/react-awesome-popover.css";
 **via CDN (unpkg)**
 
 ```code
-https://unpkg.com/react-awesome-popover@2.0.2/dest/react-awesome-popover.css
+https://unpkg.com/react-awesome-popover@latest/dest/react-awesome-popover.css
 ```
 
 ### Example
