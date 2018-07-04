@@ -4,13 +4,7 @@ import { Target } from "react-popper";
 import isOverlay from "./isOverlay";
 
 export default class TargetComponent extends React.Component {
-  constructor(props) {
-    super(props);
-    this.click = this.click.bind(this);
-    this.onMouseEnter = this.onMouseEnter.bind(this);
-    this.onMouseLeave = this.onMouseLeave.bind(this);
-  }
-  onMouseLeave({ relatedTarget: el }) {
+  onMouseLeave = ({ relatedTarget: el }) => {
     if (isOverlay(el)) {
       this.props.closePopover();
       return;
@@ -25,7 +19,7 @@ export default class TargetComponent extends React.Component {
         }
       }
     }
-  }
+  };
 
   onMouseEnter = () => this.props.openPopover();
   componentDidMount() {
@@ -34,7 +28,7 @@ export default class TargetComponent extends React.Component {
       if (touch) {
         this.target.addEventListener("touchstart", this.click, false);
       } else {
-        this.target.addEventListener("click", this.click, false);
+        this.target.addEventListener("mouseup", this.click, false);
       }
     } else if (action === "hover") {
       this.target.addEventListener("mouseenter", this.onMouseEnter, false);
@@ -47,7 +41,7 @@ export default class TargetComponent extends React.Component {
       if (touch) {
         this.target.removeEventListener("touchstart", this.click, false);
       } else {
-        this.target.removeEventListener("click", this.click, false);
+        this.target.removeEventListener("mouseup", this.click, false);
       }
     } else if (action === "hover") {
       this.target.removeEventListener("mouseenter", this.onMouseEnter, false);
