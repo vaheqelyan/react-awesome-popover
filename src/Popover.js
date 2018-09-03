@@ -1,9 +1,9 @@
-import React from "react";
-import { Manager, Target, Popper, Arrow } from "react-popper";
-import randomID from "random-id";
-import PopoverComponent from "./PopoverComponent";
-import TargetComponent from "./TargetComponent";
-import closestWebshim from "./closest";
+import React from 'react';
+import { Manager } from 'react-popper';
+import randomID from 'random-id';
+import PopoverComponent from './PopoverComponent';
+import TargetComponent from './TargetComponent';
+import closestWebshim from './closest';
 
 class Popover extends React.Component {
   constructor(props) {
@@ -16,7 +16,7 @@ class Popover extends React.Component {
   }
   componentDidMount() {
     closestWebshim();
-    this.setState({ zIndex: 100, id: randomID(10, "a") });
+    this.setState({ zIndex: 100, id: randomID(10, 'a') });
   }
 
   openPopover = () => {
@@ -38,11 +38,8 @@ class Popover extends React.Component {
       onClose,
       onOpen,
       customArrow,
-      arrow,
-      onClick,
       placement,
       modifiers,
-      render,
       action,
       motion,
       children,
@@ -88,11 +85,11 @@ class Popover extends React.Component {
 
 Popover.defaultProps = {
   arrow: true,
-  placement: "auto",
-  action: "click",
+  placement: 'auto',
+  action: 'click',
   modifiers: {},
   motion: false,
-  targetClass: "",
+  targetClass: '',
   contentClass: null,
   defaultIsOpen: false,
   open: false,
