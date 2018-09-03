@@ -6,28 +6,20 @@
   "repository": "https://github.com/vaheqelyan/react-awesome-popover.git",
   "author": "vaheqelyan <vahe.araqelyan.2013@hotmail.com>",
   "license": "MIT",
-  "keywords": [
-    "popover",
-    "react",
-    "react-awesome-popover",
-    "react-popover",
-    "animation",
-    "react-motion"
-  ],
+  "keywords": ["popover", "react", "react-awesome-popover", "react-popover", "animation", "react-motion"],
   "scripts": {
-    "package-build": "rollup -c",
-    "package-watch": "rollup -c -w",
-    "package-serve": "http-server -c-1 -p 1111"
+    "demo": "parcel demo/index.html",
+    "dev": "rollup -c -w",
+    "build": "rollup -c"
   },
-  "files": [
-    "dest/react-awesome-popover.js",
-    "dest/react-awesome-popover.css"
-  ],
+  "files": ["dest/react-awesome-popover.js", "dest/react-awesome-popover.css"],
   "devDependencies": {
     "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.6",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-plugin-jsx-control-statements": "^3.2.8",
     "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-do-expressions": "^6.22.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-es2015-loose": "^8.0.0",
@@ -37,6 +29,11 @@
     "babel-preset-react-optimize": "^1.0.1",
     "babel-preset-stage-0": "^6.24.1",
     "classcat": "^3.0.2",
+    "eslint": "^5.4.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.11.1",
     "http-server": "^0.11.1",
     "react-dom": "^16.3.2",
     "react-motion": "^0.5.2",
