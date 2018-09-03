@@ -1,73 +1,71 @@
-import React from "react";
+import React from 'react';
 
-import { Target } from "react-popper";
-import isOverlay from "./isOverlay";
+import { Target } from 'react-popper';
+import isOverlay from './isOverlay';
 
-export default class TargetComponent extends React.Component {
-  onMouseLeave = ({ relatedTarget: el }) => {
+export default function TargetComponent({
+  zIndex,
+  isOpen,
+  id,
+  children,
+  targetClass,
+  action,
+  touch,
+  tooglePopover,
+  openPopover,
+  closePopover
+}) {
+  function click() {
+    tooglePopover();
+  }
+
+  function onMouseEnter() {
+    openPopover();
+  }
+
+  function onMouseLeave({ relatedTarget: el }) {
     if (isOverlay(el)) {
-      this.props.closePopover();
+      closePopover();
       return;
     }
 
-    var target = el.closest(".rap-target-container");
+    var target = el.closest('.rap-target-container');
     if (target) {
-      if (target.hasAttribute("data-target-id")) {
-        var attr = target.getAttribute("data-target-id");
-        if (attr != this.props.id) {
-          this.props.closePopover();
+      if (target.hasAttribute('data-target-id')) {
+        var attr = target.getAttribute('data-target-id');
+        if (attr != id) {
+          closePopover();
         }
       }
     }
-  };
+  }
 
-  onMouseEnter = () => this.props.openPopover();
-  componentDidMount() {
-    const { action, touch } = this.props;
-    if (action === "click") {
-      if (touch) {
-        this.target.addEventListener("touchstart", this.click, false);
-      } else {
-        this.target.addEventListener("mouseup", this.click, false);
-      }
-    } else if (action === "hover") {
-      this.target.addEventListener("mouseenter", this.onMouseEnter, false);
-      this.target.addEventListener("mouseleave", this.onMouseLeave, false);
+  const style = isOpen ? { zIndex: zIndex + 101 } : { zIndex: zIndex };
+
+  const eventProps = {};
+  if (action == 'click') {
+    if (touch) {
+      eventProps.onTouchStart = click;
+    } else {
+      eventProps.onMouseDown = click;
     }
+  } else {
+    eventProps.onMouseEnter = onMouseEnter;
+    eventProps.onMouseLeave = onMouseLeave;
   }
-  componentWillUnmount() {
-    const { action, closePopover, touch } = this.props;
-    if (action === "click") {
-      if (touch) {
-        this.target.removeEventListener("touchstart", this.click, false);
-      } else {
-        this.target.removeEventListener("mouseup", this.click, false);
-      }
-    } else if (action === "hover") {
-      this.target.removeEventListener("mouseenter", this.onMouseEnter, false);
-      this.target.removeEventListener("mouseleave", this.onMouseLeave, false);
-    }
-  }
-  getNode = node => (this.target = node);
-  click = e => {
-    this.props.tooglePopover();
-  };
-  render() {
-    const { zIndex, isOpen, id, children, targetClass } = this.props;
-    const style = isOpen ? { zIndex: zIndex + 101 } : { zIndex: zIndex };
-    return (
-      <Target innerRef={this.getNode}>
-        {({ targetProps }) => (
-          <div
-            data-target-id={id}
-            className={`rap-target-container ${targetClass}`}
-            style={style}
-            {...targetProps}
-          >
-            {this.props.children}
-          </div>
-        )}
-      </Target>
-    );
-  }
+  return (
+    <Target>
+      {({ targetProps }) => (
+        <div
+          data-target-id={id}
+          className={`rap-target-container ${targetClass}`}
+          style={style}
+          {...eventProps}
+          {...targetProps}
+        >
+          {children}
+        </div>
+      )}
+    </Target>
+  );
 }
