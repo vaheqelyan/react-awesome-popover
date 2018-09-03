@@ -9,9 +9,9 @@
     "react"
   ],
   "plugins": [
-    "external-helpers",
     "transform-object-rest-spread",
     "transform-class-properties",
-    "jsx-control-statements"
+    "jsx-control-statements",
+    "transform-do-expressions"
   ]
 }
