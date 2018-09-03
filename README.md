@@ -38,12 +38,6 @@ Do not forget to use the stylesheet.
 import "react-awesome-popover/dest/react-awesome-popover.css";
 ```
 
-**via CDN (unpkg)**
-
-```code
-https://unpkg.com/react-awesome-popover@latest/dest/react-awesome-popover.css
-```
-
 ### Example
 
 ```jsx
@@ -161,11 +155,6 @@ You need to combine Popper style with motion style
     <td>Function</td>
     <td>Callback invoked when the popover opens after it is added to the DOM.</td>
   </tr>
-  <tr>
-    <td>onClose</td>
-    <td>Function</td>
-    <td>Callback invoked when a popover begins to close.</td>
-  </tr>  
   <tr>
     <td>onClose</td>
     <td>Function</td>
