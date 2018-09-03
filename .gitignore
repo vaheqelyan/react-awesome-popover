@@ -1,6 +1,7 @@
+.cache/
 dest/
 demo/
-
+dist/
 # Logs
 logs
 *.log
