@@ -36,7 +36,8 @@ export default class PopoverComponent extends React.Component {
       children,
       onClosePopover,
       touch,
-      arrowClass
+      arrowClass,
+      arrowFill
     } = this.props;
 
     return (
@@ -45,6 +46,7 @@ export default class PopoverComponent extends React.Component {
           {({ popperProps }) => {
             let dataPlacement = popperProps['data-placement'];
             let g = dataPlacement && dataPlacement.split('-')[0];
+
             popperProps = {
               ...popperProps,
               ...{
@@ -55,8 +57,7 @@ export default class PopoverComponent extends React.Component {
                   [do {
                     if (g == 'top' || g == 'bottom') {
                       ('top');
-                    }
-                    if (g == 'right' || g == 'left') {
+                    } else if (g == 'right' || g == 'left') {
                       ('left');
                     }
                   }]: do {
@@ -80,6 +81,7 @@ export default class PopoverComponent extends React.Component {
                   arrowClass={arrowClass}
                   customArrow={customArrow}
                   dataPlacement={popperProps['data-placement']}
+                  arrowFill={arrowFill}
                 />
               ) : null;
               return children[1](
@@ -98,6 +100,7 @@ export default class PopoverComponent extends React.Component {
                       arrowClass={arrowClass}
                       customArrow={customArrow}
                       dataPlacement={popperProps['data-placement']}
+                      arrowFill={arrowFill}
                     />
                   ) : null}
                 </div>
