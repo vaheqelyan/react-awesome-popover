@@ -107,6 +107,32 @@ You need to combine Popper style with motion style
 </Popover>
 ```
 
+### You can also use as a tooltip.
+
+Very simple!.
+
+
+![](http://res.cloudinary.com/dmtrk3yns/image/upload/c_scale,q_auto,w_278/v1536139578/ezgif.com-video-to-gif_6_sqhep4.gif)
+
+```jsx
+ReactDOM.render(
+  <Popover>
+    <button>The Target</button>
+    <div>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
+      error laudantium incidunt vitae dignissimos praesentium nesciunt,{" "}
+      <Popover action="hover" placement="top">
+        <b>pariatur provident natus</b>
+        <div>Wow man</div>
+      </Popover>{" "}
+      aperiam, corporis, quo libero sapiente recusandae! Distinctio deserunt
+      dolor sequi, i
+    </div>
+  </Popover>,
+  document.getElementById("app")
+);
+```
+
 ### Props
 
 <table>
@@ -184,5 +210,10 @@ You need to combine Popper style with motion style
     <td>touch</td>
     <td>Boolean</td>
     <td>The touch event will be triggered instead of the click event</td>
+  </tr>
+  <tr>
+    <td>arrowFill</td>
+    <td>String</td>
+    <td>Fill color of the arrow</td>
   </tr>
 </table>
