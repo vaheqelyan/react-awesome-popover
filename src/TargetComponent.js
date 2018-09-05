@@ -1,4 +1,5 @@
 import React from 'react';
+import cc from 'classcat';
 
 import { Target } from 'react-popper';
 import isOverlay from './isOverlay';
@@ -58,7 +59,10 @@ export default function TargetComponent({
       {({ targetProps }) => (
         <div
           data-target-id={id}
-          className={`rap-target-container ${targetClass}`}
+          className={cc({
+            'rap-target-container': true,
+            [targetClass]: targetClass
+          })}
           style={style}
           {...eventProps}
           {...targetProps}
