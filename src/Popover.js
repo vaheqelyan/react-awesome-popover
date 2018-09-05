@@ -44,7 +44,8 @@ class Popover extends React.Component {
       motion,
       children,
       targetClass,
-      touch
+      touch,
+      arrowFill
     } = this.props;
 
     return (
@@ -75,6 +76,7 @@ class Popover extends React.Component {
             modifiers={modifiers}
             touch={touch}
             arrowClass={arrowClass}
+            arrowFill={arrowFill}
             {...this.props}
           />
         </If>
@@ -90,11 +92,12 @@ Popover.defaultProps = {
   modifiers: {},
   motion: false,
   targetClass: '',
-  contentClass: null,
   defaultIsOpen: false,
   open: false,
   arrowClass: null,
-  touch: false
+  touch: false,
+  contentClass: 'rap-popover-content',
+  arrowFill: '#fff'
 };
 
 export default Popover;
