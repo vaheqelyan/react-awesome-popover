@@ -1,6 +1,7 @@
+
 ## React-awesome-popover
 
-[Demo](http://jsfiddle.net/6qogfdkr/138/embedded/result/)
+[Demo](http://jsfiddle.net/6qogfdkr/359/embedded/result/)
 
 ![](https://res.cloudinary.com/dxv8p5zck/image/upload/v1510661171/ezgif.com-crop_vbxgdc.gif)
 
@@ -120,11 +121,11 @@ ReactDOM.render(
     <button>The Target</button>
     <div>
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
-      error laudantium incidunt vitae dignissimos praesentium nesciunt,{" "}
+      error laudantium incidunt vitae dignissimos praesentium nesciunt,
       <Popover action="hover" placement="top">
         <b>pariatur provident natus</b>
         <div>Wow man</div>
-      </Popover>{" "}
+      </Popover>
       aperiam, corporis, quo libero sapiente recusandae! Distinctio deserunt
       dolor sequi, i
     </div>
