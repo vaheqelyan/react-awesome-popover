@@ -46,7 +46,7 @@
     "eslint-plugin-react": "^7.11.1",
     "http-server": "^0.11.1",
     "react-anime": "^2.1.0",
-    "react-dom": "^16.3.2",
+    "react-dom": "^16.7.0",
     "react-motion": "^0.5.2",
     "react-motion-ui-pack": "^0.10.3",
     "rollup": "^0.51.3",
@@ -59,12 +59,12 @@
   },
   "dependencies": {
     "random-id": "^0.0.2",
-    "react": "^16.2.0",
+    "react": "^16.7.0",
     "react-popper": "^0.7.4"
   },
   "peerDependencies": {
     "random-id": "^0.0.2",
-    "react": "^0.14.9 || ^15.3.0 || ^16.0.0",
+    "react": "^16.7.0",
     "react-popper": "^0.7.4"
   }
 }
