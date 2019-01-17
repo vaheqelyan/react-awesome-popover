@@ -45,6 +45,7 @@
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.11.1",
     "http-server": "^0.11.1",
+    "react": "^16.7.0",
     "react-anime": "^2.1.0",
     "react-dom": "^16.7.0",
     "react-motion": "^0.5.2",
@@ -59,7 +60,6 @@
   },
   "dependencies": {
     "random-id": "^0.0.2",
-    "react": "^16.7.0",
     "react-popper": "^0.7.4"
   },
   "peerDependencies": {
