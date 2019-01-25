@@ -44,16 +44,20 @@ export default function TargetComponent({
   const style = isOpen ? { zIndex: zIndex + 101 } : { zIndex: zIndex };
 
   const eventProps = {};
-  if (action == 'click') {
-    if (touch) {
-      eventProps.onTouchStart = click;
+
+  if (action) {
+    if (action == 'click') {
+      if (touch) {
+        eventProps.onTouchStart = click;
+      } else {
+        eventProps.onMouseDown = click;
+      }
     } else {
-      eventProps.onMouseDown = click;
+      eventProps.onMouseEnter = onMouseEnter;
+      eventProps.onMouseLeave = onMouseLeave;
     }
-  } else {
-    eventProps.onMouseEnter = onMouseEnter;
-    eventProps.onMouseLeave = onMouseLeave;
   }
+
   return (
     <Target>
       {({ targetProps }) => (
