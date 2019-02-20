@@ -42,7 +42,7 @@ export default class PopoverComponent extends React.Component {
 
     return (
       <React.Fragment>
-        <Popper placement={placement} modifiers={modifiers} ref="popover">
+        <Popper placement={placement} modifiers={modifiers}>
           {({ popperProps }) => {
             let dataPlacement = popperProps['data-placement'];
             let g = dataPlacement && dataPlacement.split('-')[0];
