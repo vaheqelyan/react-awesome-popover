@@ -6,10 +6,7 @@ import Overlay from './Overlay';
 
 export default class PopoverComponent extends React.Component {
   componentWillUnmount() {
-    const { action, onClose } = this.props;
-    if (action === 'hover') {
-      this.refs.popover._node.removeEventListener('mouseleave', this.ms, false);
-    }
+    const { onClose } = this.props;
 
     if (onClose) onClose();
   }
@@ -17,10 +14,7 @@ export default class PopoverComponent extends React.Component {
   ms = ({ relatedTarget }) => isOverlay(relatedTarget) && this.props.onClosePopover();
 
   componentDidMount() {
-    const { action, onOpen } = this.props;
-    if (action === 'hover') {
-      this.refs.popover._node.addEventListener('mouseleave', this.ms, false);
-    }
+    const { onOpen } = this.props;
 
     if (onOpen) onOpen();
   }
