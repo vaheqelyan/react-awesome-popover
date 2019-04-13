@@ -41,11 +41,11 @@ import "react-awesome-popover/build/index.css";
 
 ```jsx
 ReactDOM.render(
-	<Popover>
-		<button>The Target</button>
-		<div>The content</div>
-	</Popover>,
-	document.body,
+  <Popover>
+    <button>The Target</button>
+    <div>The content</div>
+  </Popover>,
+  document.body
 );
 ```
 
@@ -55,25 +55,25 @@ ReactDOM.render(
 
 ```jsx
 ReactDOM.render(
-	<Popover>
-		<button>The Target</button>
-		<div>
-			...
-			<Popover>
-				<button>The Target</button>
-				<div>
-					...
-					<Popover>
-						<button>The Target</button>
-						<div>The content</div>
-					</Popover>
-					...
-				</div>
-			</Popover>
-			...
-		</div>
-	</Popover>,
-	document.body,
+  <Popover>
+    <button>The Target</button>
+    <div>
+      ...
+      <Popover>
+        <button>The Target</button>
+        <div>
+          ...
+          <Popover>
+            <button>The Target</button>
+            <div>The content</div>
+          </Popover>
+          ...
+        </div>
+      </Popover>
+      ...
+    </div>
+  </Popover>,
+  document.body
 );
 ```
 
@@ -83,23 +83,26 @@ Set the `renderer` property to `true`. Second child becomes a function, It retur
 You need to combine popper style with motion style
 
 ```jsx
-<Popover motion>
-	<button>Click</button>
-	{(popperProps, Arrow) => (
-		<Motion defaultStyle={{ rotateY: 90 }} style={{ rotateY: spring(0) }}>
-			{({ rotateY }) => {
-				var motionStyle = {
-					transform: `${popperProps.style.transform} rotateY(${rotateY}deg)`,
-				};
-				return (
-					<div {...popperProps} style={{ ...popperProps.style, ...motionStyle }}>
-						<h1>React-motion!</h1>
-						{Arrow}
-					</div>
-				);
-			}}
-		</Motion>
-	)}
+<Popover renderer>
+  <button>Click</button>
+  {(popperProps, arrowProps) => (
+    <Motion defaultStyle={{ rotateY: 90 }} style={{ rotateY: spring(0) }}>
+      {({ rotateY, scale }) => {
+        var motionStyle = {
+          transform: `${popperProps.style.transform} rotateY(${rotateY}deg)`
+        };
+        return (
+          <div
+            {...popperProps}
+            style={{ ...popperProps.style, ...motionStyle }}
+          >
+            <h3>Also works well with react-motion</h3>
+            <div {...arrowProps} />
+          </div>
+        );
+      }}
+    </Motion>
+  )}
 </Popover>
 ```
 
@@ -111,19 +114,20 @@ Very simple!.
 
 ```jsx
 ReactDOM.render(
-	<Popover>
-		<button>The Target</button>
-		<div>
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus error laudantium incidunt vitae dignissimos
-			praesentium nesciunt,
-			<Popover action="hover" placement="top">
-				<b>pariatur provident natus</b>
-				<div>Wow man</div>
-			</Popover>
-			aperiam, corporis, quo libero sapiente recusandae! Distinctio deserunt dolor sequi, i
-		</div>
-	</Popover>,
-	document.getElementById("app"),
+  <Popover>
+    <button>The Target</button>
+    <div>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
+      error laudantium incidunt vitae dignissimos praesentium nesciunt,
+      <Popover action="hover" placement="top">
+        <b>pariatur provident natus</b>
+        <div>Wow man</div>
+      </Popover>
+      aperiam, corporis, quo libero sapiente recusandae! Distinctio deserunt
+      dolor sequi, i
+    </div>
+  </Popover>,
+  document.getElementById("app")
 );
 ```
 
@@ -135,16 +139,16 @@ Starting from version 4.0.0, this component does not use the svg arrow. Basicall
 
 ```css
 .rap-popper-div-arrow[data-placement*="bottom"] {
-	margin-top: -0.6em; /* argin of arrow */
+  margin-top: -0.6em; /* argin of arrow */
 }
 
 .rap-popper-div-arrow[data-placement*="bottom"]::before {
-	border-width: 0 1em 0.6em 1em; /* ontrole the dimensions for the arrow */
-	border-color: transparent transparent #e3e3e3 transparent; /*set the color for the arrow */
+  border-width: 0 1em 0.6em 1em; /* ontrole the dimensions for the arrow */
+  border-color: transparent transparent #e3e3e3 transparent; /*set the color for the arrow */
 }
 ```
 
-**But what if I want the shadow to surround the arrow ?**. [demo](demo)
+**But what if I want the shadow to surround the arrow ?**. [demo](http://jsfiddle.net/6qogfdkr/419/embedded/result/)
 I think that you have no choice but to use [drop-shadow](https://developer.mozilla.org/en-US/docs/Web/CSS/filter-function/drop-shadow).
 
 > You can also hide the lower shadow of the arrow using the div
@@ -157,7 +161,8 @@ Without using `filter`
 
 ![](https://res.cloudinary.com/dmtrk3yns/image/upload/q_auto/v1555148214/react-awesome-popover/no-shadow_ice_screenshot_20190413-133055.png)
 
-With filters
+With `filter`
+
 ![](https://res.cloudinary.com/dmtrk3yns/image/upload/q_auto/v1555148214/react-awesome-popover/shadow_ice_screenshot_20190413-133520.png)
 
 ![](https://res.cloudinary.com/dmtrk3yns/image/upload/q_auto/v1555148214/react-awesome-popover/shadow_ice_screenshot_20190413-133546.png)
