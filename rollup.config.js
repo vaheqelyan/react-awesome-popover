@@ -1,37 +1,35 @@
-import babel from 'rollup-plugin-babel';
-import nodeResolve from 'rollup-plugin-node-resolve';
-import commonjs from 'rollup-plugin-commonjs';
-import alias from 'rollup-plugin-alias';
-import replace from 'rollup-plugin-replace';
+import nodeResolve from "rollup-plugin-node-resolve";
+import commonjs from "rollup-plugin-commonjs";
+import replace from "rollup-plugin-replace";
+import typescript from "rollup-plugin-typescript2";
+import { sizeSnapshot } from "rollup-plugin-size-snapshot";
+import alias from "rollup-plugin-alias";
+
+const umdGlobals = {
+	react: "React",
+	"prop-types": "propTypes",
+};
 
 export default [
-  {
-    input: 'src/index.js',
-    name: 'ReactAwesomePopover',
-    output: {
-      file: 'dest/react-awesome-popover.js',
-      format: 'umd'
-    },
-    plugins: [
-      replace({
-        'process.env.NODE_ENV': JSON.stringify('production')
-      }),
-      babel({ exclude: 'node_modules/**', plugins: ['external-helpers'] }),
-      nodeResolve({
-        jsnext: true,
-        main: true
-      }),
-      commonjs({
-        include: 'node_modules/**'
-      }),
-      alias({
-        react: 'node_modules/react/umd/react.development.js',
-        'react-dom': './node_modules/react-dom/umd/react-dom.development.js'
-      })
-    ],
-    external: ['react'],
-    globals: {
-      react: 'React'
-    }
-  }
+	{
+		input: "src/index.tsx",
+		output: {
+			name: "ReactAwesomePopover",
+			file: "build/index.umd.js",
+			format: "umd",
+			globals: umdGlobals,
+		},
+		external: Object.keys(umdGlobals),
+		plugins: [
+			nodeResolve(),
+			commonjs({ include: "**/node_modules/**" }),
+			replace({ "process.env.NODE_ENV": JSON.stringify("development") }),
+			typescript(/*{ plugin options }*/),
+			alias({
+				react: "node_modules/react/umd/react.development.js",
+				"react-dom": "./node_modules/react-dom/umd/react-dom.development.js",
+			}),
+			sizeSnapshot(),
+		],
+	},
 ];
