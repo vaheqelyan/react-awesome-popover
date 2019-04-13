@@ -5,7 +5,7 @@
 <a href="https://bundlephobia.com/result?p=react-awesome-popover@latest"><img src="https://img.shields.io/bundlephobia/minzip/react-awesome-popover.svg?style=flat-square"/></a>
 </p>
 
-[Demo](http://jsfiddle.net/6qogfdkr/418/embedded/result/)
+[Demo](http://jsfiddle.net/6qogfdkr/419/embedded/result/)
 
 ![](https://res.cloudinary.com/dxv8p5zck/image/upload/v1510661171/ezgif.com-crop_vbxgdc.gif)
 
