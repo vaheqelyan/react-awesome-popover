@@ -1,6 +1,0 @@
-# .prettierrc
-printWidth: 120
-useTabs: false
-tabWidth: 2
-singleQuote: true
-parser: babylon
