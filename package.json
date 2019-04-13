@@ -19,7 +19,7 @@
 		"go": "npm-run-all pretty build",
 		"demo": "parcel demo/index.html --no-hmr",
 		"build": "rollup -c",
-		"pretty": "prettier --config .prettierrc --write \"src/**/*.{ts,tsx}\" \"src/*.{ts,tsx}\" \"package.json\" \"tsconfig.json\" \"rollup.config.js\" \"build/index.css\" \"README.md\" "
+		"pretty": "prettier --config .prettierrc --write \"src/**/*.{ts,tsx}\" \"src/*.{ts,tsx}\" \"package.json\" \"tsconfig.json\" \"rollup.config.js\" \"build/index.css\""
 	},
 	"files": [
 		"build/index.umd.js",
