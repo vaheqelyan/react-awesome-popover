@@ -24,8 +24,9 @@ interface IProps {
 
 const Target: React.SFC<IProps> = ({ isOpen, zIndex, target, action, onOpen, onClose, onClick, onTouchStart }) => {
 	const onClickTarget = (e: React.MouseEvent<HTMLDivElement>) => {
-			
-		if(onClick) { onClick(e); }
+		if (onClick) {
+			onClick(e);
+		}
 
 		if (isOpen) {
 			onClose();
@@ -34,7 +35,9 @@ const Target: React.SFC<IProps> = ({ isOpen, zIndex, target, action, onOpen, onC
 		}
 	};
 	const onTouchTarget = (e: React.TouchEvent<HTMLDivElement>) => {
-		if(onTouchStart) { onTouchStart(e); }
+		if (onTouchStart) {
+			onTouchStart(e);
+		}
 		if (isOpen) {
 			onClose();
 		} else {
