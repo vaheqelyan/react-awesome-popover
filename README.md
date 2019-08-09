@@ -236,4 +236,16 @@ With `filter`
   <td>Set this to true if you want popper to position it self in ‘fixed’ mode</td>
   <td><code>false</code></td>
 </tr>
+<tr>
+  <td>onClick</td>
+  <td>Function</td>
+  <td>Triggered before <code>onOpen</code></td>
+  <td><code>...</code></td>
+</tr>
+<tr>
+  <td>onTouchStart</td>
+  <td>Function</td>
+  <td>Triggered before <code>onOpen</code></td>
+  <td><code>...</code></td>
+</tr>
 </table>
