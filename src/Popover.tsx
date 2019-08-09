@@ -29,6 +29,8 @@ export interface IProps {
 	action: ActionProp;
 	open: boolean;
 	renderer: boolean;
+	onTouchStart: (e: React.TouchEvent<HTMLDivElement>) => void;
+	onClick: (e: React.MouseEvent<HTMLDivElement>) => void;
 	initZindex: number;
 	children: {
 		target: React.ReactNode;
@@ -125,6 +127,7 @@ export default class Popover extends React.Component<IProps, IState> {
 					zIndex={zIndex}
 					onOpen={this.onOpen}
 					onClick={this.props.onClick}
+					onTouchStart={this.props.onTouchStart}
 				/>
 
 				{isOpen && ContentRef}

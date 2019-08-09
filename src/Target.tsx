@@ -18,12 +18,21 @@ interface IProps {
 	zIndex: number;
 	action: ActionProp;
 	target: React.ReactNode;
-	onClick: () => void;
+	onClick: (e: React.MouseEvent<HTMLDivElement>) => void;
+	onTouchStart: (e: React.TouchEvent<HTMLDivElement>) => void;
 }
 
-const Target: React.SFC<IProps> = ({ isOpen, zIndex, target, action, onOpen, onClose, onClick }) => {
-	const onClickTarget = (e) => {
-		onClick(e)
+const Target: React.SFC<IProps> = ({ isOpen, zIndex, target, action, onOpen, onClose, onClick, onTouchStart }) => {
+	const onClickTarget = (e: React.MouseEvent<HTMLDivElement>) => {
+		onClick(e);
+		if (isOpen) {
+			onClose();
+		} else {
+			onOpen();
+		}
+	};
+	const onTouchTarget = (e: React.TouchEvent<HTMLDivElement>) => {
+		onTouchStart(e);
 		if (isOpen) {
 			onClose();
 		} else {
@@ -51,7 +60,7 @@ const Target: React.SFC<IProps> = ({ isOpen, zIndex, target, action, onOpen, onC
 			restProps.onMouseOut = onMouseOut;
 		}
 	} else if (action === "touch") {
-		restProps.onTouchStart = onClickTarget;
+		restProps.onTouchStart = onTouchTarget;
 	}
 
 	return (
