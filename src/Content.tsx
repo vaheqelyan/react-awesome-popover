@@ -15,6 +15,7 @@ export interface IProps {
 	action: ActionProp;
 	arrow: boolean;
 	renderer: boolean;
+	positionFixed?: boolean;
 }
 
 const Content: React.SFC<IProps> = ({
@@ -26,13 +27,14 @@ const Content: React.SFC<IProps> = ({
 	zIndex,
 	isOpen,
 	action,
+	positionFixed,
 	onClose,
 }) => {
 	const concatStyle = { zIndex: isOpen ? zIndex + 101 : zIndex };
 
 	return (
 		<React.Fragment>
-			<Popper placement={placement} modifiers={modifiers}>
+			<Popper positionFixed={positionFixed} placement={placement} modifiers={modifiers}>
 				{({ ref, style, placement, arrowProps }) => {
 					if (renderer) {
 						const popperProps: IPopperProps = {

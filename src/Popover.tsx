@@ -21,6 +21,7 @@ export interface IPopperProps {
 }
 
 export interface IProps {
+	positionFixed?: boolean;
 	onOpen: () => void;
 	onClose: () => void;
 	placement: ReactPopper.Placement;
@@ -52,6 +53,7 @@ export default class Popover extends React.Component<IProps, IState> {
 		open: false,
 		renderer: false,
 		initZindex: 100,
+		positionFixed: false,
 	};
 	constructor(props: IProps) {
 		super(props);
@@ -93,7 +95,7 @@ export default class Popover extends React.Component<IProps, IState> {
 	};
 
 	public render() {
-		const { children, placement, modifiers, action, arrow, renderer } = this.props;
+		const { children, placement, modifiers, action, arrow, renderer, positionFixed } = this.props;
 		// @ts-ignore
 		const [target, content] = children;
 
@@ -104,6 +106,7 @@ export default class Popover extends React.Component<IProps, IState> {
 
 		const ContentRef = (
 			<Content
+				positionFixed={positionFixed}
 				children={children}
 				renderer={renderer}
 				onClose={this.onClose}
