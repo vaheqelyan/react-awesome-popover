@@ -18,10 +18,12 @@ interface IProps {
 	zIndex: number;
 	action: ActionProp;
 	target: React.ReactNode;
+	onClick: () => void;
 }
 
-const Target: React.SFC<IProps> = ({ isOpen, zIndex, target, action, onOpen, onClose }) => {
-	const onClick = () => {
+const Target: React.SFC<IProps> = ({ isOpen, zIndex, target, action, onOpen, onClose, onClick }) => {
+	const onClickTarget = (e) => {
+		onClick(e)
 		if (isOpen) {
 			onClose();
 		} else {
@@ -42,14 +44,14 @@ const Target: React.SFC<IProps> = ({ isOpen, zIndex, target, action, onOpen, onC
 	const restProps: IRestProps = {};
 
 	if (action === "click") {
-		restProps.onClick = onClick;
+		restProps.onClick = onClickTarget;
 	} else if (action === "hover") {
 		restProps.onMouseOver = onMouseOver;
 		if (isOpen) {
 			restProps.onMouseOut = onMouseOut;
 		}
 	} else if (action === "touch") {
-		restProps.onTouchStart = onClick;
+		restProps.onTouchStart = onClickTarget;
 	}
 
 	return (

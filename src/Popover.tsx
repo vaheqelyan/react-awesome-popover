@@ -124,6 +124,7 @@ export default class Popover extends React.Component<IProps, IState> {
 					isOpen={isOpen}
 					zIndex={zIndex}
 					onOpen={this.onOpen}
+					onClick={this.props.onClick}
 				/>
 
 				{isOpen && ContentRef}
