@@ -214,9 +214,9 @@ export default class Content extends React.Component {
 			},
 		];
 
-		if (this.props.place !== "auto") {
+		if (this.props.placement !== "auto") {
 			this.setState({
-				position: pos.filter(val => val.at === this.props.place)[0],
+				position: pos.filter(val => val.at === this.props.placement)[0],
 			});
 		} else {
 			this.setState({

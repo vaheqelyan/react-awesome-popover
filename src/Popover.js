@@ -19,7 +19,7 @@ export default class Popover extends React.Component {
 	render() {
 		const { props } = this;
 		const {
-			place = "auto",
+			placement = "auto",
 			arrow = true,
 			action = "click",
 			zIndex = DEFAULT_ZINDEX,
@@ -52,7 +52,7 @@ export default class Popover extends React.Component {
 					<Content
 						zIndex={zIndex}
 						arrow={arrow}
-						place={place}
+						placement={placement}
 						targetRef={this.target}
 						content={content}
 						onClose={onClose}
