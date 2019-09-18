@@ -45,6 +45,6 @@
 		"typescript": "^3.4.3"
 	},
 	"dependencies": {
-		"react": "^16.8.6"
+		"react": "^16.9.0"
 	}
 }
