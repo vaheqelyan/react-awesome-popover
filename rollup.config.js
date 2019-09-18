@@ -1,7 +1,6 @@
 import nodeResolve from "rollup-plugin-node-resolve";
 import commonjs from "rollup-plugin-commonjs";
 import replace from "rollup-plugin-replace";
-import typescript from "rollup-plugin-typescript2";
 import { sizeSnapshot } from "rollup-plugin-size-snapshot";
 import alias from "rollup-plugin-alias";
 import swc from "rollup-plugin-swc";
