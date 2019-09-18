@@ -1,13 +1,15 @@
+> Starting with v5.0.0, this component is no longer based on (Popper.js)[https://github.com/FezVrasta/popper.js], which used react-popper. to use (react-popper)[https://github.com/FezVrasta/react-popper] based popover you must use version [v4.1.0](https://github.com/vaheqelyan/react-awesome-popover/tree/v4.1.0)
+
 ## React-awesome-popover
 
 <p>
-  <a href="https://www.npmjs.com/package/react-awesome-popover"><img  src="https://img.shields.io/npm/v/react-awesome-popover.svg"/></a>
-<a href="https://bundlephobia.com/result?p=react-awesome-popover@latest"><img src="https://img.shields.io/bundlephobia/minzip/react-awesome-popover.svg?style=flat-square"/></a>
+  <a href="https://www.npmjs.com/package/react-awesome-popover"><img  src="https://img.shields.io/npm/v/react-awesome-popover?style=for-the-badge"/></a>
+<a href="https://bundlephobia.com/result?p=react-awesome-popover@latest"><img src="https://img.shields.io/bundlephobia/min/react-awesome-popover?style=for-the-badge"/></a>
 </p>
 
 [Demo](http://jsfiddle.net/6qogfdkr/419/embedded/result/)
 
-![](https://res.cloudinary.com/dxv8p5zck/image/upload/v1510661171/ezgif.com-crop_vbxgdc.gif)
+![](https://res.cloudinary.com/dmtrk3yns/image/upload/q_auto/v1568812281/react-awesome-popover/ezgif-5-6832e82b1255.gif)
 
 ### Installation
 
@@ -79,30 +81,18 @@ ReactDOM.render(
 
 ### Performing an animation
 
-Set the `renderer` property to `true`. Second child becomes a function, It returns popperProps and arrowProps.
-You need to combine popper style with motion style
-
 ```jsx
-<Popover renderer>
+<Popover>
   <button>Click</button>
-  {(popperProps, arrowProps) => (
-    <Motion defaultStyle={{ rotateY: 90 }} style={{ rotateY: spring(0) }}>
-      {({ rotateY, scale }) => {
-        var motionStyle = {
-          transform: `${popperProps.style.transform} rotateY(${rotateY}deg)`
-        };
-        return (
-          <div
-            {...popperProps}
-            style={{ ...popperProps.style, ...motionStyle }}
-          >
-            <h3>Also works well with react-motion</h3>
-            <div {...arrowProps} />
-          </div>
-        );
-      }}
-    </Motion>
-  )}
+  <Motion defaultStyle={{ opacity: 0 }} style={{ opacity: spring(1) }}>
+    {style => {
+      return (
+        <div style={style}>
+          <h3>Popover</h3>
+        </div>
+      );
+    }}
+  </Motion>
 </Popover>
 ```
 
@@ -113,59 +103,20 @@ Very simple!.
 ![](http://res.cloudinary.com/dmtrk3yns/image/upload/c_scale,q_auto,w_278/v1536139578/ezgif.com-video-to-gif_6_sqhep4.gif)
 
 ```jsx
-ReactDOM.render(
-  <Popover>
-    <button>The Target</button>
-    <div>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
-      error laudantium incidunt vitae dignissimos praesentium nesciunt,
-      <Popover action="hover" placement="top">
-        <b>pariatur provident natus</b>
-        <div>Wow man</div>
-      </Popover>
-      aperiam, corporis, quo libero sapiente recusandae! Distinctio deserunt
-      dolor sequi, i
-    </div>
-  </Popover>,
-  document.getElementById("app")
-);
+<Popover>
+  <button>The Target</button>
+  <div>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus error
+    laudantium incidunt vitae dignissimos praesentium nesciunt,
+    <Popover action="hover" placement="top">
+      <b>pariatur provident natus</b>
+      <div>Wow man</div>
+    </Popover>
+    aperiam, corporis, quo libero sapiente recusandae! Distinctio deserunt dolor
+    sequi, i
+  </div>
+</Popover>
 ```
-
-### What about the arrow?
-
-Starting from version 4.0.0, this component does not use the svg arrow. Basically you need to handle the arrow with css.
-
-> Arrow is built using css
-
-```css
-.rap-popper-div-arrow[data-placement*="bottom"] {
-  margin-top: -0.6em; /* argin of arrow */
-}
-
-.rap-popper-div-arrow[data-placement*="bottom"]::before {
-  border-width: 0 1em 0.6em 1em; /* ontrole the dimensions for the arrow */
-  border-color: transparent transparent #e3e3e3 transparent; /*set the color for the arrow */
-}
-```
-
-**But what if I want the shadow to surround the arrow ?**. [demo](http://jsfiddle.net/6qogfdkr/419/embedded/result/)
-I think that you have no choice but to use [drop-shadow](https://developer.mozilla.org/en-US/docs/Web/CSS/filter-function/drop-shadow).
-
-> You can also hide the lower shadow of the arrow using the div
-
-There is also one solution using a filter
-
-Without using `filter`
-
-![](https://res.cloudinary.com/dmtrk3yns/image/upload/q_auto/v1555148214/react-awesome-popover/no-shadow_ice_screenshot_20190413-132935.png)
-
-![](https://res.cloudinary.com/dmtrk3yns/image/upload/q_auto/v1555148214/react-awesome-popover/no-shadow_ice_screenshot_20190413-133055.png)
-
-With `filter`
-
-![](https://res.cloudinary.com/dmtrk3yns/image/upload/q_auto/v1555148214/react-awesome-popover/shadow_ice_screenshot_20190413-133520.png)
-
-![](https://res.cloudinary.com/dmtrk3yns/image/upload/q_auto/v1555148214/react-awesome-popover/shadow_ice_screenshot_20190413-133546.png)
 
 ### Props
 
@@ -185,67 +136,68 @@ With `filter`
   <tr>
     <td>placement</td>
     <td>String</td>
-    <td>The placement of the popover.<br/> The default value is auto  <a href="https://github.com/FezVrasta/popper.js/blob/master/docs/_includes/popper-documentation.md#popperplacements--enum">Popper.js placement</a></td>
+    <td>The placement of the popover.<br/> <code>top-start</code><code>top-center</code><code>top-end</code><code>left-start</code><code>left-center</code><code>left-end</code><code>right-start</code><code>right-center</code><code>right-end</code><code>bottom-start</code><code>bottom-center</code><code>bottom-end</code></td>
     <td><code>auto</code></td>
   </tr>
   <tr>
     <td>action</td>
     <td>String</td>
-    <td><code>click | hover | touch</code></td>
+    <td><code>click | hover</code>. Supports touch event</td>
     <td><code>click</code></td>
   </tr>
   <tr>
     <td>onOpen</td>
     <td>Function</td>
-    <td>The callback is called before opening</td>
+    <td>The callback is called when the content is mounted</td>
     <td></td>
   </tr>
   <tr>
     <td>onClose</td>
     <td>Function</td>
-    <td>Callback is called before closing</td>
+    <td>The callback is called after the content is unmounted from the dom</td>
     <td></td>
-  </tr>
-  <tr>
-  <td>renderer</td>
-  <td>Boolean</td>
-  <td>Custom renderer (returns function)</td>
-  <td><code>false</code></td>
-  </tr>
-  <tr>
-    <td>modifiers</td>
-    <td>Object</td>
-    <td>Allow passing <a href="https://github.com/FezVrasta/popper.js/blob/master/docs/_includes/popper-documentation.md#modifiers--object">Popper modifiers</a> as props.</td>
-    <td><code>{}</code></td>
   </tr>
   <tr>
     <td>open</td>
     <td>Boolean</td>
     <td>Whether the popover is visible. Passing this prop puts the popover in controlled mode.To make the popover completely manageable, you must pass the <code>null</code> value to the <code>action</code> prop</td>
     <td><code>false</code></td>
-  </tr>
+  </tr> 
   <tr>
   <td>initZindex</td>
   <td>Number</td>
   <td>Initial number for zIndex for item</td>
-  <td><code>100</code></td>
+  <td><code>1000</code></td>
 </tr>
+  
+    <tr>
+  <td>overlayColor</td>
+  <td>String</td>
+  <td>Set the background color of an overlay element</td>
+  <td><code>rgba(0,0,0,0.5)</code></td>
+</tr>
+
 <tr>
-  <td>positionFixed</td>
+  <td>arrowProps</td>
+  <td>Object</td>
+  <td>Pass any prop to the div element that wraps the arrow</td>
+  <td><code>{}</code></td>
+</tr>
+  
+  <tr>
+  <td>preventDefault</td>
   <td>Boolean</td>
-  <td>Set this to true if you want popper to position it self in ‘fixed’ mode</td>
-  <td><code>false</code></td>
+  <td>Cancels the event if it is cancelable, meaning that the default action that belongs to the event will not occur.<a href="https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault" target="_blank">more</a></td>
+  <td></td>
 </tr>
-<tr>
-  <td>onClick</td>
-  <td>Function</td>
-  <td>Triggered before <code>onOpen</code></td>
-  <td><code>...</code></td>
+  
+  
+    <tr>
+  <td>stopPropagation</td>
+  <td>Object</td>
+  <td>Stops the bubbling of an event to parent elements, preventing any parent event handlers from being executed. <a href="https://developer.mozilla.org/en-US/docs/Web/API/Event/stopPropagation" target="_blank">more</a></td>
+  <td></td>
 </tr>
-<tr>
-  <td>onTouchStart</td>
-  <td>Function</td>
-  <td>Triggered before <code>onOpen</code></td>
-  <td><code>...</code></td>
-</tr>
+  
+  
 </table>
