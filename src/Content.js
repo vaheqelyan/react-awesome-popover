@@ -237,14 +237,14 @@ export default class Content extends React.Component {
 		};
 		const positionStyle = position ? position.style : {};
 		const arrowStyle = position ? position.arrow : {};
-		const { content, arrow, arrowProps={} } = this.props;
+		const { content, arrow, arrowProps = {} } = this.props;
 
-    const {style={}, ...arrowRest} = arrowProps;
+		const { style = {}, ...arrowRest } = arrowProps;
 
 		return (
 			<div style={{ ...defaultStyle, ...positionStyle }} ref={this.contentRef}>
 				{arrow ? (
-					<div ref={this.arrowRef} style={{...{ position: "absolute", ...arrowStyle }, ...style}} {...arrowRest}>
+					<div ref={this.arrowRef} style={{ ...{ position: "absolute", ...arrowStyle }, ...style }} {...arrowRest}>
 						{"◥"}
 					</div>
 				) : null}
