@@ -7,8 +7,6 @@
 <a href="https://bundlephobia.com/result?p=react-awesome-popover@latest"><img src="https://img.shields.io/bundlephobia/min/react-awesome-popover?style=for-the-badge"/></a>
 </p>
 
-[Demo](http://jsfiddle.net/6qogfdkr/419/embedded/result/)
-
 ![](https://res.cloudinary.com/dmtrk3yns/image/upload/q_auto/v1568812281/react-awesome-popover/ezgif-5-6832e82b1255.gif)
 
 ### Installation
