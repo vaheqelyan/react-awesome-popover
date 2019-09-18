@@ -1,4 +1,4 @@
-> Starting with v5.0.0, this component is no longer based on (Popper.js)[https://github.com/FezVrasta/popper.js], which used react-popper. to use (react-popper)[https://github.com/FezVrasta/react-popper] based popover you must use version [v4.1.0](https://github.com/vaheqelyan/react-awesome-popover/tree/v4.1.0)
+> Starting with v5.0.0, this component is no longer based on <a href="https://github.com/FezVrasta/popper.js" target="_blank">Popper.js</a>, which used react-popper. to use <a href="https://github.com/FezVrasta/react-popper" target="_blank">react-popper</a> based popover you must use version <a href="https://github.com/vaheqelyan/react-awesome-popover/tree/v4.1.0" target="_blank">4.1.0</a>
 
 ## React-awesome-popover
 
