@@ -30,6 +30,7 @@ export default class Popover extends React.Component {
 			children,
 			style,
 			overlayColor,
+      arrowProps,
 			...rest
 		} = props;
 
@@ -50,6 +51,7 @@ export default class Popover extends React.Component {
 				</Target>
 				{this.state.open && (
 					<Content
+            arrowProps={arrowProps}
 						zIndex={zIndex}
 						arrow={arrow}
 						placement={placement}
