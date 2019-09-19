@@ -214,13 +214,13 @@ export default class Content extends React.Component {
 			},
 		];
 
-    const compute = pos.map(val => val.check1 - (val.check2 - val.check3))
-    const getIndex = compute.indexOf(Math.max(...compute))
+		const compute = pos.map(val => val.check1 - (val.check2 - val.check3));
+		const getIndex = compute.indexOf(Math.max(...compute));
 
-    const result = placement !== "auto" ? pos.filter(val=>val.at=== placement)[0] : pos[getIndex]
-    this.setState({
-      position: result
-    })
+		const result = placement !== "auto" ? pos.filter(val => val.at === placement)[0] : pos[getIndex];
+		this.setState({
+			position: result,
+		});
 	}
 	componentWillUnmount() {
 		const { onClose } = this.props;
