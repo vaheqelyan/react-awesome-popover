@@ -7,7 +7,7 @@ export default class Content extends React.Component {
 	arrowRef = React.createRef();
 	componentDidMount() {
 		const { contentRef, arrowRef } = this;
-		const { targetRef, arrow, onOpen } = this.props;
+		const { targetRef, arrow, onOpen, placement } = this.props;
 
 		if (onOpen) onOpen();
 
@@ -214,15 +214,13 @@ export default class Content extends React.Component {
 			},
 		];
 
-		if (this.props.placement !== "auto") {
-			this.setState({
-				position: pos.filter(val => val.at === this.props.placement)[0],
-			});
-		} else {
-			this.setState({
-				position: pos.filter(val => val.check1 > 0 && val.check2 > 0 && val.check3 > -1)[0] || pos[9],
-			});
-		}
+    const compute = pos.map(val => val.check1 - (val.check2 - val.check3))
+    const getIndex = compute.indexOf(Math.max(...compute))
+
+    const result = placement !== "auto" ? pos.filter(val=>val.at=== placement)[0] : pos[getIndex]
+    this.setState({
+      position: result
+    })
 	}
 	componentWillUnmount() {
 		const { onClose } = this.props;
