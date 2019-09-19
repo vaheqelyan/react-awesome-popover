@@ -162,7 +162,7 @@ Very simple!.
     <td><code>false</code></td>
   </tr> 
   <tr>
-  <td>initZindex</td>
+  <td>zIndex</td>
   <td>Number</td>
   <td>Initial number for zIndex for item</td>
   <td><code>1000</code></td>
