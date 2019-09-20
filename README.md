@@ -118,84 +118,16 @@ Very simple!.
 
 ### Props
 
-<table>
-  <tr>
-    <th>Prop</th>
-    <th>Type</th>
-    <th>Description</th>
-    <th>Default</th>
-  </tr>
-  <tr>
-    <td>arrow</td>
-    <td>Boolean</td>
-    <td>If  <code>false</code>, the arrow is removed</td>
-    <td><code>true</code></td>
-  </tr>
-  <tr>
-    <td>placement</td>
-    <td>String</td>
-    <td>The placement of the popover.<br/> <code>top-start</code><code>top-center</code><code>top-end</code><code>left-start</code><code>left-center</code><code>left-end</code><code>right-start</code><code>right-center</code><code>right-end</code><code>bottom-start</code><code>bottom-center</code><code>bottom-end</code></td>
-    <td><code>auto</code></td>
-  </tr>
-  <tr>
-    <td>action</td>
-    <td>String</td>
-    <td><code>click | hover</code>. Supports touch event</td>
-    <td><code>click</code></td>
-  </tr>
-  <tr>
-    <td>onOpen</td>
-    <td>Function</td>
-    <td>The callback is called when the content is mounted</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>onClose</td>
-    <td>Function</td>
-    <td>The callback is called after the content is unmounted from the dom</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>open</td>
-    <td>Boolean</td>
-    <td>Whether the popover is visible. Passing this prop puts the popover in controlled mode.To make the popover completely manageable, you must pass the <code>null</code> value to the <code>action</code> prop</td>
-    <td><code>false</code></td>
-  </tr> 
-  <tr>
-  <td>zIndex</td>
-  <td>Number</td>
-  <td>Initial number for zIndex for item</td>
-  <td><code>1000</code></td>
-</tr>
-  
-    <tr>
-  <td>overlayColor</td>
-  <td>String</td>
-  <td>Set the background color of an overlay element</td>
-  <td><code>rgba(0,0,0,0.5)</code></td>
-</tr>
-
-<tr>
-  <td>arrowProps</td>
-  <td>Object</td>
-  <td>Pass any prop to the div element that wraps the arrow</td>
-  <td><code>{}</code></td>
-</tr>
-  
-  <tr>
-  <td>preventDefault</td>
-  <td>Boolean</td>
-  <td>Cancels the event if it is cancelable, meaning that the default action that belongs to the event will not occur.<a href="https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault" target="_blank">more</a></td>
-  <td></td>
-</tr>
-  
-  
-    <tr>
-  <td>stopPropagation</td>
-  <td>Object</td>
-  <td>Stops the bubbling of an event to parent elements, preventing any parent event handlers from being executed. <a href="https://developer.mozilla.org/en-US/docs/Web/API/Event/stopPropagation" target="_blank">more</a></td>
-  <td></td>
-</tr>
-  
-  
-</table>
+| Prop            | Type     | Description                                                                                                                                                                                   | Default         |
+| --------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| arrow           | Boolean  | If `false`, the arrow is removed                                                                                                                                                              | `true`          |
+| placement       | String   | The placement of the popover.`top-start`,`top-center`,`top-end`,`left-start`,`left-center`,`left-end`,`right-start`,`right-center`,`right-end`,`bottom-start`,`bottom-center`,`bottom-end`    | `auto`          |
+| action          | String   | `click` or `hover`. Supports touch event                                                                                                                                                      | `click`         |
+| onOpen          | Function | The callback is called when the content is mounted                                                                                                                                            |
+| onClose         | Function | The callback is called after the content is unmounted from the dom                                                                                                                            |
+| open            | Boolean  | Whether the popover is visible. Passing this prop puts the popover in controlled mode. To make the popover completely manageable, you must pass the `null` value to the `action` prop         | `false`         |
+| zIndex          | Number   | Initial number for zIndex                                                                                                                                                                     | 1000            |
+| overlayColor    | String   | Set the background color of an overlay element                                                                                                                                                | rgba(0,0,0,0.5) |
+| arrowPropss     | Object   | Pass any prop to the div element that wraps the arrow                                                                                                                                         | `{}`            |
+| preventDefault  | Boolean  | Cancels the event if it is cancelable, meaning that the default action that belongs to the event will not occur.[more](https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault) | `false`         |
+| stopPropagation | Boolean  | Stops the bubbling of an event to parent elements, preventing any parent event handlers from being executed. [more](https://developer.mozilla.org/en-US/docs/Web/API/Event/stopPropagation)   | `false`         |
