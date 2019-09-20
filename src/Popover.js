@@ -64,8 +64,8 @@ export default class Popover extends React.Component {
 
 				{this.state.open ? (
 					<Overlay
-            preventDefault={preventDefault}
-            stopPropagation={stopPropagation}
+						preventDefault={preventDefault}
+						stopPropagation={stopPropagation}
 						overlayColor={overlayColor}
 						onClose={this.setOpen}
 						zIndex={zIndex}

@@ -1,9 +1,17 @@
 import React from "react";
 
-const Overlay = ({ onClose, overlayColor = "rgba(0,0,0,0.5)", zIndex, action, setOpen, preventDefault, stopPropagation }) => {
+const Overlay = ({
+	onClose,
+	overlayColor = "rgba(0,0,0,0.5)",
+	zIndex,
+	action,
+	setOpen,
+	preventDefault,
+	stopPropagation,
+}) => {
 	const onClick = e => {
-		if(preventDefault) e.preventDefault();
-		if(stopPropagation) e.stopPropagation();
+		if (preventDefault) e.preventDefault();
+		if (stopPropagation) e.stopPropagation();
 		onClose();
 	};
 
