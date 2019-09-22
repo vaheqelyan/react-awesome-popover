@@ -50,29 +50,28 @@ export default class Popover extends React.Component {
 					{target}
 				</Target>
 				{this.state.open && (
-					<Content
-						arrowProps={arrowProps}
-						zIndex={zIndex}
-						arrow={arrow}
-						placement={placement}
-						targetRef={this.target}
-						content={content}
-						onClose={onClose}
-						onOpen={onOpen}
-					/>
+					<React.Fragment>
+						<Content
+							arrowProps={arrowProps}
+							zIndex={zIndex}
+							arrow={arrow}
+							placement={placement}
+							targetRef={this.target}
+							content={content}
+							onClose={onClose}
+							onOpen={onOpen}
+						/>
+						<Overlay
+							preventDefault={preventDefault}
+							stopPropagation={stopPropagation}
+							overlayColor={overlayColor}
+							onClose={this.setOpen}
+							zIndex={zIndex}
+							action={action}
+							setOpen={this.setOpen}
+						/>
+					</React.Fragment>
 				)}
-
-				{this.state.open ? (
-					<Overlay
-						preventDefault={preventDefault}
-						stopPropagation={stopPropagation}
-						overlayColor={overlayColor}
-						onClose={this.setOpen}
-						zIndex={zIndex}
-						action={action}
-						setOpen={this.setOpen}
-					/>
-				) : null}
 			</div>
 		);
 	}
