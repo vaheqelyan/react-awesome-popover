@@ -73,6 +73,8 @@ export default class Content extends React.Component {
 		const topBottomEnd = -(contentBound.width - targetBound.width);
 		const topBottomCenter = targetBound.width / 2 - contentBound.width / 2;
 
+		const bottomStyleTop = targetBound.height + arrowBound.height / 2;
+
 		const styles = {
 			topStart: { top: -(contentBound.height + arrowBound.height / 2) },
 			topCenter: { top: -(contentBound.height + arrowBound.height / 2), left: topBottomCenter },
@@ -89,9 +91,9 @@ export default class Content extends React.Component {
 			rightCenter: { left: targetBound.width + arrowBound.width / 2, top: xCenterStyle },
 			rightEnd: { left: targetBound.width + arrowBound.width / 2, top: rightLeftEnd },
 
-			bottomStart: { top: targetBound.height },
-			bottomCenter: { top: targetBound.height, left: topBottomCenter },
-			bottomEnd: { top: targetBound.height, left: topBottomEnd },
+			bottomStart: { top: bottomStyleTop },
+			bottomCenter: { top: bottomStyleTop, left: topBottomCenter },
+			bottomEnd: { top: bottomStyleTop, left: topBottomEnd },
 		};
 
 		const transform = {
