@@ -77,14 +77,14 @@ export default class Content extends React.Component {
 		const computearrowH = arrowBound.height / 2;
 
 		const leftLeftStyle = -(contentBound.width + computeArrowW);
-
+		const topTopStyle = -(contentBound.height + arrowBound.height / 2);
 		const rightLeftStyle = targetBound.width + computeArrowW;
 		const bottomTopStyle = targetBound.height + computearrowH;
 
 		const styles = {
-			topStart: { top: -(contentBound.height + arrowBound.height / 2) },
-			topCenter: { top: -(contentBound.height + arrowBound.height / 2), left: topBottomCenter },
-			topEnd: { top: -(contentBound.height + arrowBound.height / 2), left: topBottomEnd },
+			topStart: { top: topTopStyle },
+			topCenter: { top: topTopStyle, left: topBottomCenter },
+			topEnd: { top: topTopStyle, left: topBottomEnd },
 
 			leftStart: { left: leftLeftStyle },
 			leftCenter: {
