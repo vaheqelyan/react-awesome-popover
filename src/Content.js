@@ -73,27 +73,33 @@ export default class Content extends React.Component {
 		const topBottomEnd = -(contentBound.width - targetBound.width);
 		const topBottomCenter = targetBound.width / 2 - contentBound.width / 2;
 
-		const bottomStyleTop = targetBound.height + arrowBound.height / 2;
+		const computeArrowW = arrowBound.width / 2;
+		const computearrowH = arrowBound.height / 2;
+
+		const leftLeftStyle = -(contentBound.width + computeArrowW);
+
+		const rightLeftStyle = targetBound.width + computeArrowW;
+		const bottomTopStyle = targetBound.height + computearrowH;
 
 		const styles = {
 			topStart: { top: -(contentBound.height + arrowBound.height / 2) },
 			topCenter: { top: -(contentBound.height + arrowBound.height / 2), left: topBottomCenter },
 			topEnd: { top: -(contentBound.height + arrowBound.height / 2), left: topBottomEnd },
 
-			leftStart: { left: -(contentBound.width + Math.ceil(arrowBound.width / 2)) },
+			leftStart: { left: leftLeftStyle },
 			leftCenter: {
-				left: -(contentBound.width + Math.ceil(arrowBound.width / 2)),
+				left: leftLeftStyle,
 				top: xCenterStyle,
 			},
-			leftEnd: { top: rightLeftEnd, left: -(contentBound.width - arrowBound.height / 2) },
+			leftEnd: { top: rightLeftEnd, left: leftLeftStyle },
 
-			rightStart: { left: targetBound.width + arrowBound.width / 2 },
-			rightCenter: { left: targetBound.width + arrowBound.width / 2, top: xCenterStyle },
-			rightEnd: { left: targetBound.width + arrowBound.width / 2, top: rightLeftEnd },
+			rightStart: { left: rightLeftStyle },
+			rightCenter: { left: rightLeftStyle, top: xCenterStyle },
+			rightEnd: { left: rightLeftStyle, top: rightLeftEnd },
 
-			bottomStart: { top: bottomStyleTop },
-			bottomCenter: { top: bottomStyleTop, left: topBottomCenter },
-			bottomEnd: { top: bottomStyleTop, left: topBottomEnd },
+			bottomStart: { top: bottomTopStyle },
+			bottomCenter: { top: bottomTopStyle, left: topBottomCenter },
+			bottomEnd: { top: bottomTopStyle, left: topBottomEnd },
 		};
 
 		const transform = {
