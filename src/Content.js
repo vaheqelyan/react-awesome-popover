@@ -14,212 +14,271 @@ export default class Content extends React.Component {
 		const targetBound = targetRef.current.getBoundingClientRect();
 		const contentBound = contentRef.current.getBoundingClientRect();
 
-		const atTop = targetBound.y - contentBound.height;
-		const atRight = window.innerWidth - (targetBound.right + contentBound.width);
-		const atLeft = targetBound.x - contentBound.width;
-
-		const atBottom = window.innerHeight - (targetBound.bottom + contentBound.height);
-
-		let arrowBound = { width: 0, height: 0 },
-			arrowClientH = 0;
+		let arrowBound = { width: 0, height: 0 };
 		if (arrow) {
 			arrowBound = arrowRef.current.getBoundingClientRect();
-			arrowClientH = arrowRef.current.clientHeight;
 		}
+
+		const { innerWidth, innerHeight } = window;
+
+		const calcCoverLeft = contentBound.x - contentBound.width;
+		const coverLeft = calcCoverLeft < 0 ? calcCoverLeft : 0;
+
+		const calcCoverRight = contentBound.x + targetBound.width + contentBound.width;
+		const coverRight = calcCoverRight > innerWidth ? innerWidth - calcCoverRight : 0;
+
+		const calcCoverTop = contentBound.y - contentBound.height;
+		const coverTop = calcCoverTop < 0 ? calcCoverTop : 0;
+
+		const calcCoverBottom = targetBound.bottom + contentBound.height;
+		const coverBottom = calcCoverBottom > innerHeight ? innerHeight - calcCoverBottom : 0;
+
+		const calcXCenterLeft = contentBound.x + targetBound.width / 2 - contentBound.width / 2;
+
+		const calcXCenterRight = contentBound.x + targetBound.width / 2 - contentBound.width / 2 + contentBound.width;
+
+		const coverXCenterLeft = calcXCenterLeft < 0 ? calcXCenterLeft : 0;
+
+		const coverXCenterRight = calcXCenterRight > innerWidth ? innerWidth - calcXCenterRight : 0;
+
+		const calcYCenterTop = contentBound.y + targetBound.height / 2 - contentBound.height / 2;
+
+		const coverYCenterTop = calcYCenterTop < 0 ? calcYCenterTop : 0;
+
+		const calcYCenterBottom = contentBound.y + targetBound.height / 2 - contentBound.height / 2 + contentBound.height;
+
+		const coverYCenterBottom = calcYCenterBottom > innerHeight ? calcYCenterBottom : 0;
+
+		const calcTopStart = contentBound.x + contentBound.width;
+		const coverTopStart = calcTopStart > innerWidth ? innerWidth - calcTopStart : 0;
+
+		const calcTopEnd = contentBound.x - (contentBound.width - targetBound.width);
+		const coverTopEnd = calcTopEnd < 0 ? calcTopEnd : 0;
+
+		const calcLeftEndTop = contentBound.y - (contentBound.height - targetBound.height);
+		const coverLeftEndTop = calcLeftEndTop < 0 ? calcLeftEndTop : 0;
+
+		const coverRightEndTop = coverLeftEndTop;
+
+		const calcLefStartBottom = contentBound.y + contentBound.height;
+		const coverLeftStartBottom = calcLefStartBottom > innerHeight ? innerHeight - calcLefStartBottom : 0;
+
+		const coverRightStartBottom = coverLeftStartBottom;
+
+		const coverBottomStartRight = coverTopStart;
+		const coverBottomEndLeft = coverTopEnd;
+
+		const xCenterStyle = targetBound.height / 2 - contentBound.height / 2;
+		const rightLeftEnd = -(contentBound.height - targetBound.height);
+		const topBottomEnd = -(contentBound.width - targetBound.width);
+		const topBottomCenter = targetBound.width / 2 - contentBound.width / 2;
+
+		const styles = {
+			topStart: { top: -(contentBound.height + arrowBound.height / 2) },
+			topCenter: { top: -(contentBound.height + arrowBound.height / 2), left: topBottomCenter },
+			topEnd: { top: -(contentBound.height + arrowBound.height / 2), left: topBottomEnd },
+
+			leftStart: { left: -(contentBound.width + Math.ceil(arrowBound.width / 2)) },
+			leftCenter: {
+				left: -(contentBound.width + Math.ceil(arrowBound.width / 2)),
+				top: xCenterStyle,
+			},
+			leftEnd: { top: rightLeftEnd, left: -(contentBound.width - arrowBound.height / 2) },
+
+			rightStart: { left: targetBound.width + arrowBound.width / 2 },
+			rightCenter: { left: targetBound.width + arrowBound.width / 2, top: xCenterStyle },
+			rightEnd: { left: targetBound.width + arrowBound.width / 2, top: rightLeftEnd },
+
+			bottomStart: { top: targetBound.height },
+			bottomCenter: { top: targetBound.height, left: topBottomCenter },
+			bottomEnd: { top: targetBound.height, left: topBottomEnd },
+		};
+
+		const transform = {
+			bottom: {
+				transform: "rotate(-45deg)",
+			},
+			top: {
+				transform: "rotate(135deg)",
+			},
+			left: {
+				transform: "rotate(45deg)",
+			},
+			right: {
+				transform: "rotate(45deg)",
+			},
+		};
+
+		const arrowBottomTop = Math.ceil(-arrowBound.height / 2);
+
+		const arrowBottomTopCenter = contentBound.width / 2 - arrowBound.width / 2;
+
+		const arrowTop = contentBound.height - arrowBound.height / 2;
+		const arrowTopBottomEnd = targetBound.width / 2 - arrowBound.width / 2;
+
+		const arrowLeftRightEnd = contentBound.height - arrowBound.height / 2 - targetBound.height / 2;
+
+		const arrowLeftRightCenter = contentBound.height / 2 - Math.ceil(arrowBound.height / 2);
+		const arrowTopBottomStartLeft = targetBound.width / 2 - arrowBound.width / 2;
+
+		const arrowLeftLeft = Math.ceil(contentBound.width - arrowBound.width / 2);
+		const arrowLeftRightTop = targetBound.height / 2 - arrowBound.height / 2;
+
+		const arrowStyle = {
+			topStart: {
+				...transform.top,
+				top: arrowTop,
+				left: arrowTopBottomStartLeft,
+			},
+			topCenter: {
+				...transform.top,
+				top: arrowTop,
+				left: arrowBottomTopCenter,
+			},
+			topEnd: {
+				...transform.top,
+				top: arrowTop,
+				right: arrowTopBottomEnd,
+			},
+			leftStart: {
+				...transform.left,
+				left: arrowLeftLeft,
+				top: arrowLeftRightTop,
+			},
+
+			leftCenter: {
+				...transform.left,
+				left: arrowLeftLeft,
+				top: arrowLeftRightCenter,
+			},
+
+			leftEnd: {
+				...transform.left,
+				left: arrowLeftLeft,
+				top: arrowLeftRightEnd,
+			},
+			rightStart: {
+				...transform.right,
+				left: -arrowBound.width,
+				top: arrowLeftRightTop,
+			},
+
+			rightCenter: {
+				...transform.right,
+				left: -arrowBound.width,
+				top: arrowLeftRightCenter,
+			},
+			rightEnd: {
+				...transform.right,
+				left: -arrowBound.width,
+				top: arrowLeftRightEnd,
+			},
+			bottomStart: {
+				...transform.bottom,
+				top: arrowBottomTop,
+				left: arrowTopBottomStartLeft,
+			},
+			bottomCenter: {
+				...transform.bottom,
+				top: arrowBottomTop,
+				left: arrowBottomTopCenter,
+			},
+			bottomEnd: {
+				...transform.bottom,
+				top: arrowBottomTop,
+				right: arrowTopBottomEnd,
+			},
+		};
 
 		const pos = [
 			{
 				at: "top-start",
-				check1: atTop,
-				check2: window.innerWidth - (targetBound.left + contentBound.width),
-				check3: 0,
-				style: {
-					top: -(contentBound.height + arrowClientH / 2),
-					left: 0,
-				},
-				arrow: {
-					transform: "rotate(135deg)",
-					bottom: -Math.ceil(arrowClientH / 2),
-					left: Math.min(targetBound.width / 2, contentBound.width) - arrowBound.width / 2,
-				},
+				cover: [coverTop, coverTopStart, 0],
+				style: styles.topStart,
+				arrow: arrowStyle.topStart,
 			},
 			{
 				at: "top-center",
-				check1: atTop,
-				check2: contentBound.x - targetBound.width - contentBound.width / 2 + targetBound.width / 2,
-				check3:
-					window.innerWidth -
-					(contentBound.x - targetBound.width - contentBound.width / 2 + targetBound.width / 2 + contentBound.width),
-				style: {
-					top: -(contentBound.height + arrowClientH / 2),
-					left: -(contentBound.width / 2) + targetBound.width / 2,
-				},
-				arrow: {
-					transform: "rotate(135deg)",
-					bottom: -Math.ceil(arrowClientH / 2),
-					left: contentBound.width / 2 - arrowBound.width / 2,
-				},
+				cover: [coverTop, coverXCenterLeft, coverXCenterRight],
+				style: styles.topCenter,
+				arrow: arrowStyle.topCenter,
 			},
 			{
 				at: "top-end",
-				check1: atTop,
-				check2: targetBound.right - contentBound.width,
-				check3: 0,
-				style: {
-					top: -(contentBound.height + arrowBound.height / 2),
-					left: -(contentBound.width - targetBound.width),
-				},
-				arrow: {
-					transform: "rotate(135deg)",
-					bottom: -arrowBound.height / 2,
-					right: Math.min(targetBound.width / 2, contentBound.width) - arrowBound.width / 2,
-				},
+				cover: [coverTop, coverTopEnd, 0],
+				style: styles.topEnd,
+				arrow: arrowStyle.topEnd,
 			},
 			{
 				at: "left-start",
-				check1: atLeft,
-				check2: window.innerHeight - (targetBound.top + contentBound.height),
-				check3: 0,
-				style: {
-					left: -(contentBound.width + /* padding for arrow */ arrowBound.width / 2),
-				},
-				arrow: {
-					top: Math.min(targetBound.height / 2, contentBound.height) - arrowClientH / 2,
-					left: contentBound.width - arrowBound.width / 2,
-					transform: `rotate(45deg)`,
-				},
+				cover: [coverLeft, coverLeftStartBottom, 0],
+				style: styles.leftStart,
+				arrow: arrowStyle.leftStart,
 			},
 			{
 				at: "left-center",
-				check1: atLeft,
-				check2: contentBound.y - (contentBound.height / 2 + targetBound.height / 2),
-				check3:
-					window.innerHeight -
-					(contentBound.y - (contentBound.height / 2 + targetBound.height / 2) + contentBound.height),
-				style: {
-					left: -(contentBound.width + /* padding for arrow */ arrowBound.width / 2),
-					top: -(contentBound.height / 2 - targetBound.height / 2),
-				},
-				arrow: {
-					transform: `rotate(45deg)`,
-					left: contentBound.width - arrowBound.width / 2,
-					top: contentBound.height / 2 - arrowClientH / 2,
-				},
+				cover: [coverLeft, coverYCenterTop, coverYCenterBottom],
+				style: styles.leftCenter,
+				arrow: arrowStyle.leftCenter,
 			},
 			{
 				at: "left-end",
-				check1: atLeft,
-				check2: targetBound.bottom - contentBound.height,
-				check3: 0,
-				style: {
-					left: -(contentBound.width + arrowBound.width / 2),
-					top: -(contentBound.height - targetBound.height),
-				},
-				arrow: {
-					transform: `rotate(45deg)`,
-					right: -arrowBound.width / 2,
-					bottom: Math.min(targetBound.height / 2, contentBound.height) - arrowClientH / 2,
-				},
+				cover: [coverLeft, coverLeftEndTop, 0],
+				style: styles.leftEnd,
+				arrow: arrowStyle.leftEnd,
 			},
 			{
 				at: "right-start",
-				check1: atRight,
-				check2: window.innerHeight - (targetBound.top + contentBound.height),
-				check3: 0,
-				style: { left: targetBound.width + arrowBound.width / 2 },
-				arrow: {
-					transform: `rotate(45deg)`,
-					left: -arrowBound.width,
-					top: Math.min(targetBound.height / 2, contentBound.height) - arrowClientH / 2,
-				},
+				cover: [coverRight, coverRightStartBottom, 0],
+				style: styles.rightStart,
+				arrow: arrowStyle.rightStart,
 			},
 			{
 				at: "right-center",
-				check1: atRight,
-				check2: contentBound.y - (contentBound.height / 2 + targetBound.height / 2),
-				check3:
-					window.innerHeight -
-					(contentBound.y - (contentBound.height / 2 + targetBound.height / 2) + contentBound.height),
-				style: {
-					top: -(contentBound.height / 2 - targetBound.height / 2),
-					left: targetBound.width + arrowBound.width / 2,
-				},
-				arrow: {
-					left: -arrowBound.width,
-					top: contentBound.height / 2 - arrowClientH / 2,
-					transform: `rotate(45deg)`,
-				},
+				cover: [coverRight, coverYCenterTop, coverYCenterBottom],
+				style: styles.rightCenter,
+				arrow: arrowStyle.rightCenter,
 			},
 			{
 				at: "right-end",
-				check1: atRight,
-				check2: targetBound.bottom - contentBound.height,
-				check3: 0,
-				style: {
-					left: targetBound.width + arrowBound.width / 2,
-					top: -(contentBound.height - targetBound.height),
-				},
-				arrow: {
-					transform: `rotate(45deg)`,
-					left: -arrowBound.width,
-					bottom: Math.min(targetBound.height / 2, contentBound.height) - arrowClientH / 2,
-				},
+				cover: [coverRight, coverRightEndTop, 0],
+				style: styles.rightEnd,
+				arrow: arrowStyle.rightEnd,
 			},
 			{
 				at: "bottom-start",
-				check1: atBottom,
-				check2: window.innerWidth - (targetBound.left + contentBound.width),
-				check3: 0,
-				style: {
-					top: targetBound.height + arrowBound.height / 2,
-					left: 0,
-				},
-				arrow: {
-					transform: `rotate(-45deg)`,
-					top: -(arrowBound.height / 2),
-					left: Math.min(targetBound.width / 2, contentBound.width) - arrowBound.width / 2,
-				},
+				cover: [coverBottom, coverBottomStartRight, 0],
+				style: styles.bottomStart,
+				arrow: arrowStyle.bottomStart,
 			},
 			{
 				at: "bottom-center",
-				check1: atBottom,
-				check2: contentBound.x - targetBound.width - contentBound.width / 2 + targetBound.width / 2,
-				check3:
-					window.innerWidth -
-					(contentBound.x - targetBound.width - contentBound.width / 2 + targetBound.width / 2 + contentBound.width),
-				style: {
-					top: targetBound.height + arrowClientH / 2,
-					left: -(contentBound.width / 2) + targetBound.width / 2,
-				},
-				arrow: {
-					transform: `rotate(-45deg)`,
-					top: -arrowClientH / 2,
-					left: contentBound.width / 2 - arrowBound.width / 2,
-				},
+				cover: [coverBottom, coverXCenterLeft, coverXCenterRight],
+				style: styles.bottomCenter,
+				arrow: arrowStyle.bottomCenter,
 			},
 			{
 				at: "bottom-end",
-				check1: atBottom,
-				check2: atLeft,
-				check3: 0,
-				style: {
-					top: targetBound.height + arrowBound.height / 2,
-					left: -(contentBound.width - targetBound.width),
-				},
-				arrow: {
-					transform: `rotate(-45deg)`,
-					top: -(arrowBound.height / 2),
-					right: Math.min(targetBound.width / 2, contentBound.width) - arrowBound.width / 2,
-				},
+				cover: [coverBottom, coverBottomEndLeft, 0],
+				style: styles.bottomEnd,
+				arrow: arrowStyle.bottomEnd,
 			},
 		];
 
-		const compute = pos.map(val => val.check1 - (val.check2 - val.check3));
-		const getIndex = compute.indexOf(Math.max(...compute));
+		let get;
 
-		const result = placement !== "auto" ? pos.filter(val => val.at === placement)[0] : pos[getIndex];
+		if (placement === "auto") {
+			const reducer = (accumulator, currentValue) => accumulator + currentValue;
+			const compute = pos.map(({ cover }) => cover.reduce(reducer));
+			const findIndex = compute.indexOf(Math.max(...compute));
+			const result = pos[findIndex];
+			get = result;
+		} else {
+			get = pos.filter(val => val.at === placement)[0];
+		}
+
 		this.setState({
-			position: result,
+			position: get,
 		});
 	}
 	componentWillUnmount() {
@@ -231,6 +290,8 @@ export default class Content extends React.Component {
 		const defaultStyle = {
 			display: "inline-block",
 			position: "absolute",
+			left: 0,
+			top: 0,
 			zIndex: DEFAULT_ZINDEX + 10,
 		};
 		const positionStyle = position ? position.style : {};
@@ -242,7 +303,7 @@ export default class Content extends React.Component {
 		return (
 			<div style={{ ...defaultStyle, ...positionStyle }} ref={this.contentRef}>
 				{arrow ? (
-					<div ref={this.arrowRef} style={{ ...{ position: "absolute", ...arrowStyle }, ...style }} {...arrowRest}>
+					<div ref={this.arrowRef} style={{ ...{ position: "absolute", top: 0, ...arrowStyle }, ...style }} {...arrowRest}>
 						{"◥"}
 					</div>
 				) : null}
