@@ -31,12 +31,6 @@ UMD library exposed as `ReactAwesomePopover`
 const Popover = ReactAwesomePopover;
 ```
 
-Do not forget to use the stylesheet.
-
-```js
-import "react-awesome-popover/build/index.css";
-```
-
 ### Example
 
 ```jsx
